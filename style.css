@@ -1,23 +1,70 @@
-.input-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% - calc(100vh * 400 / 1081)));
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.text-form {
-  display: grid;
-  justify-items: center;
-}
+
 label {
   font-size: calc(100vw * 20 / 1920);
   color: #fff;
   margin-bottom: calc(100vh * 10 / 1081);
 }
+body {
+  background-color: rgb(53, 53, 53);
+}
+img {
+  width: calc(100vw * 45 / 1920);
+}
+
+.volume-regulator,
+.btn-groups,
+.indicator-leds,
+.game-mode-rgb-control,
+.navigation-buttons,
+.volume-key,
+.calculator,
+.buttons,
+.top-panel,
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navigation-cluster,
+.first_part,
+.second-part,
+.third-part,
+.key-group,
+.move-keys {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-column-center,
+.input-container,
+.indicators,
+.keyboard,
+.key-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - calc(100vh * 400 / 1081)));
+}
+.text-form,
+.Fn {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 .keyboard-input {
   width: 50vw;
   height: calc(100vh * 100 / 1081);
@@ -25,27 +72,12 @@ label {
   border-radius: calc(100vw * 8 / 1920);
   border: calc(100vw * 1.5 / 1920) solid #646464;
   margin-bottom: calc(100vw * 40 / 1920);
-  outline: none;
   background: #222;
   color: #fff;
   transition: border 0.2s, box-shadow 0.2s;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  background-color: rgb(53, 53, 53);
-}
-
-img {
-  width: calc(100vw * 45 / 1920);
-}
 .image {
-  width: calc(100vw * 50 / 1920);
   display: flex;
-  justify-content: center;
   align-items: center;
   animation: animate 5s linear infinite;
   filter: drop-shadow(0 0 calc(100vw * 3 / 1920) #49ff18);
@@ -59,7 +91,6 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
   align-items: flex-start;
 }
 .key {
@@ -95,18 +126,12 @@ img {
 .indicators {
   height: 100%;
   width: calc(100vw * 50 / 1920);
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 .Fn {
   cursor: pointer;
   height: 100%;
   color: white;
-  display: grid;
-  justify-content: center;
-  align-items: center;
   background-color: #171616;
   border: calc(100vw * 1 / 1920) solid rgb(190, 190, 190);
   border-radius: calc(100vw * 5 / 1920);
@@ -127,23 +152,15 @@ img {
     calc(100vw * 40 / 1920);
 }
 .first_part {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   width: calc(100vw * 798 / 1920);
 }
 .second-part {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: calc(100vw * 160 / 1920);
 }
 .top-panel {
-  display: flex;
   width: 100%;
   height: calc(100vh * 50 / 1081);
   margin-bottom: calc(100vh * 10 / 1081);
-  justify-content: space-between;
 }
 @keyframes animate {
   0% {
@@ -166,9 +183,7 @@ img {
 .row {
   height: calc(100vh * 50 / 1081);
   width: 100%;
-  display: flex;
   margin: calc(100vh * 5 / 1081) calc(100vw * 1 / 1920);
-  justify-content: space-between;
 }
 
 .ctrl-btn {
@@ -189,9 +204,6 @@ img {
 .buttons {
   height: calc(100vh * 364 / 1081);
   min-height: calc(100vh * 364 / 1081);
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
 }
 .line_upper {
   width: calc(100vw * 35 / 1920);
@@ -206,19 +218,13 @@ img {
 
 .calculator {
   height: calc(100vh * 280 / 1081);
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
 }
 .circle {
   border-radius: calc(100vw * 40 / 1920);
 }
 
 .key-text {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 .extended-row,
 .enter-btn,
@@ -227,53 +233,26 @@ img {
 }
 .navigation-buttons {
   height: 100%;
-  display: flex;
   align-items: center;
   width: calc(100vw * 632 / 1920);
-  justify-content: space-between;
 }
 .indicator-leds {
   width: calc(100vw * 210 / 1920);
   padding: calc(100vh * 8 / 1081) 0 0 0;
   height: 100%;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .navigation-cluster {
   height: calc(100vh * 280 / 1081);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
 }
 .third-part {
   width: calc(100vw * 213 / 1920);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100%;
-}
-.key-group {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
-.move-keys {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .width-regulating {
   width: calc(100vw * 158 / 1920);
 }
 .volume-regulator {
   width: calc(100% / 3);
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 calc(100vw * 7.5 / 1920) 0 calc(100vw * 3 / 1920);
 }
 .volume {
@@ -284,8 +263,6 @@ img {
 }
 .game-mode-rgb-control {
   width: calc(100vh * 160 / 1081);
-  display: inline-flex;
-  justify-content: space-between;
   padding: 0 calc(100vw * 3 / 1920);
 }
 .backspace-btn,
@@ -300,9 +277,6 @@ img {
 .btn-groups {
   height: 100%;
   width: calc(100vw * 212 / 1920);
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 .esc-btn {
   width: calc(100vw * 50 / 1920);
@@ -317,19 +291,9 @@ img {
 .bold-icon {
   font-size: calc(100vw * 18 / 1920);
 }
-.num-block {
-  width: calc(100vw * 213 / 1920);
-  height: calc(100vh * 280 / 1081);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .volume-key {
   padding: 0 calc(100vw * 10 / 1920);
   width: calc(100vw * 85 / 1920);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   height: 100%;
   font-size: calc(100vw * 20 / 1920);
