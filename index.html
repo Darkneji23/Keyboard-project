@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Virtual Keyboard</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="input-container">
+      <form class="text-form" method="post">
+        <label for="entering">Enter the text using the keyboard</label>
+        <textarea
+          class="keyboard-input"
+          placeholder=" Enter the text..."
+          cols="2"
+          rows="2"
+        ></textarea>
+      </form>
+    </div>
+    <main>
+      <div class="keyboard">
+        <div class="indentation">
+          <div class="top-panel">
+            <div class="image">
+              <img src="img/images.png" alt="logo" />
+            </div>
+            <div class="navigation-buttons">
+              <div class="indicator-leds">
+                <div class="indicators">
+                  <div class="leds"></div>
+                  <span class="indicator-text">CAPS LOCK</span>
+                </div>
+                <div class="indicators">
+                  <div class="leds"></div>
+                  <span class="indicator-text">NUM LOCK</span>
+                </div>
+                <div class="indicators">
+                  <div class="leds"></div>
+                  <span class="indicator-text">SCROLL LOCK</span>
+                </div>
+                <div class="indicators">
+                  <div class="leds"></div>
+                  <span class="indicator-text">WIN LOCK</span>
+                </div>
+              </div>
+              <div class="game-mode-rgb-control">
+                <button class="key circle smaller-nav-btn">
+                  <div class="Fn circle">
+                    <i class="bi bi-joystick bold-icon"></i>
+                  </div>
+                </button>
+                <button class="key circle smaller-nav-btn">
+                  <div class="Fn circle">
+                    <i class="bi bi-brightness-high bold-icon-brightness"></i>
+                  </div>
+                </button>
+              </div>
+              <div class="volume-regulator">
+                <button class="key circle smaller-nav-btn">
+                  <div class="Fn circle">
+                    <i class="bi bi-volume-mute bold-icon"></i>
+                  </div>
+                </button>
+                <button class="key circle smaller-nav-btn volume">
+                  <div class="Fn circle">
+                    <div class="volume-key">
+                      <div class="gg-minus"></div>
+                      <span>+</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="buttons">
+            <div class="first_part">
+              <div>
+                <div class="row upper">
+                  <div class="btn-groups esc-btn">
+                    <button class="key">
+                      <span class="Fn">ESC</span>
+                    </button>
+                  </div>
+                  <div class="btn-groups">
+                    <button class="key">
+                      <span class="Fn">F1</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F2</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F3</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F4</span>
+                    </button>
+                  </div>
+                  <div class="btn-groups">
+                    <button class="key">
+                      <span class="Fn">F5</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F6</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F7</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F8</span>
+                    </button>
+                  </div>
+                  <div class="btn-groups">
+                    <button class="key">
+                      <span class="Fn">F9</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F10</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F11</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn">F12</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <button class="key">
+                    <span class="Fn">`</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">1</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">2</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">3</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">4</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">5</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">6</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">7</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">8</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">9</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">0</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">-</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">=</span>
+                  </button>
+                  <button class="key backspace-btn">
+                    <div class="Fn">
+                      <i class="fa-solid fa-arrow-left fa-lg"></i>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="row">
+                  <button class="key tab-btn">
+                    <span class="Fn smaller-key-size">TAB</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">Q</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">W</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">E</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">R</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">T</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">Y</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">U</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">I</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">O</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">P</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">[</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">]</span>
+                  </button>
+                  <button class="key enter-key">
+                    <div class="Fn enter-icon">&#8629;</div>
+                  </button>
+                </div>
+
+                <div class="row">
+                  <button class="key caps-btn">
+                    <div class="Fn">
+                      <div class="key-text smaller-key-size">
+                        <span class="top smaller-key-size">CAPS</span>
+                        <span class="bottom smaller-key-size">LOCK</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">A</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">S</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">D</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">F</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">G</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">H</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">J</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">K</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">L</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">;</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">'</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">\</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn"></span>
+                  </button>
+                </div>
+
+                <div class="row">
+                  <button class="shift-btn key">
+                    <span class="Fn smaller-key-size">SHIFT</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">Z</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">X</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">C</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">V</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">B</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">N</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">M</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">&lt;</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">&gt;</span>
+                  </button>
+                  <button class="key">
+                    <span class="Fn">/</span>
+                  </button>
+                  <button class="shift-btn key">
+                    <span class="Fn smaller-key-size">SHIFT</span>
+                  </button>
+                </div>
+
+                <div class="row">
+                  <button class="key ctrl-btn">
+                    <span class="Fn smaller-key-size">CTRL</span>
+                  </button>
+                  <button class="key bigger-btn">
+                    <div class="Fn">
+                      <i class="fa-brands fa-windows fa-lg"></i>
+                    </div>
+                  </button>
+                  <button class="key bigger-btn">
+                    <span class="Fn smaller-key-size">ALT</span>
+                  </button>
+                  <button class="key space-btn">
+                    <div class="Fn">
+                      <div id="gg-space"></div>
+                    </div>
+                  </button>
+                  <button class="key bigger-btn">
+                    <div class="Fn">
+                      <div class="key-text smaller-key-size">
+                        <span class="top smaller-key-size">ALT</span>
+                        <span class="bottom smaller-key-size">GR</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="key bigger-btn">
+                    <div class="Fn">
+                      <i class="fa-brands fa-windows fa-lg"></i>
+                    </div>
+                  </button>
+                  <button class="key bigger-btn">
+                    <div class="Fn">
+                      <i class="fa-solid fa-bars"></i>
+                    </div>
+                  </button>
+                  <button class="key ctrl-btn">
+                    <span class="Fn smaller-key-size">CTRL</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="second-part">
+              <div class="row upper">
+                <button class="key">
+                  <div class="Fn smaller-font-size">
+                    <div class="key-text">
+                      <span>PRINT SCRN</span>
+                      <div class="line_upper"></div>
+                      <span>SYSRQ</span>
+                    </div>
+                  </div>
+                </button>
+                <button class="key smaller-font-size">
+                  <div class="Fn">
+                    <div class="key-text">
+                      <span>SCROLL LOCK</span>
+                    </div>
+                  </div>
+                </button>
+
+                <button class="key smaller-font-size">
+                  <div class="Fn">
+                    <div class="key-text">
+                      <span>PAUSE</span>
+                      <div class="line_upper"></div>
+                      <span>BREAK</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+              <div class="navigation-cluster">
+                <div class="key-group">
+                  <div class="row">
+                    <button class="key">
+                      <span class="Fn smaller-key-size">INS</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn smaller-key-size">HOME</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn smaller-key-size">PAGE UP</span>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button class="key">
+                      <span class="Fn smaller-key-size">DEL</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn smaller-key-size">END</span>
+                    </button>
+                    <button class="key">
+                      <span class="Fn smaller-key-size">PAGE DOWN</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="move-keys">
+                  <div class="row">
+                    <button class="key arrow-up-btn">
+                      <div class="Fn">
+                        <i class="fa-solid fa-arrow-up"></i>
+                      </div>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button class="key">
+                      <div class="Fn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                      </div>
+                    </button>
+                    <button class="key">
+                      <div class="Fn">
+                        <i class="fa-solid fa-arrow-down"></i>
+                      </div>
+                    </button>
+                    <button class="key">
+                      <div class="Fn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="third-part">
+              <div>
+                <div class="row upper">
+                  <button class="key circle">
+                    <div class="Fn circle">
+                      <i
+                        class="fa-solid fa-forward-step fa-sm icon-stretch"
+                      ></i>
+                    </div>
+                  </button>
+                  <button class="key circle">
+                    <div class="Fn circle">
+                      <i class="fa-solid fa-stop fa-sm"></i>
+                    </div>
+                  </button>
+                  <button class="key circle">
+                    <div class="Fn circle">
+                      <i
+                        class="fa-sharp fa-solid fa-backward-fast fa-sm icon-stretch"
+                      ></i>
+                    </div>
+                  </button>
+                  <button class="key circle">
+                    <div class="Fn circle">
+                      <i
+                        class="fa-sharp fa-solid fa-forward-fast fa-sm icon-stretch"
+                      ></i>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="num-block">
+                <div class="calculator">
+                  <div class="width-regulating">
+                    <div class="row">
+                      <button class="key">
+                        <div class="Fn smaller-key-size">NUM LOCK</div>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">/</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">*</span>
+                      </button>
+                    </div>
+                    <div class="row">
+                      <button class="key">
+                        <span class="Fn">7</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">8</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">9</span>
+                      </button>
+                    </div>
+                    <div class="row">
+                      <button class="key">
+                        <span class="Fn">4</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">5</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">6</span>
+                      </button>
+                    </div>
+                    <div class="row">
+                      <button class="key">
+                        <span class="Fn">1</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">2</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">3</span>
+                      </button>
+                    </div>
+                    <div class="row">
+                      <button class="key null-btn">
+                        <span class="Fn">0</span>
+                      </button>
+                      <button class="key">
+                        <span class="Fn">,</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="row">
+                      <button class="key">
+                        <span class="Fn">-</span>
+                      </button>
+                    </div>
+                    <div class="row extended-row">
+                      <button class="key plus-btn">
+                        <span class="Fn">+</span>
+                      </button>
+                    </div>
+                    <div class="row extended-row">
+                      <button class="key enter-btn">
+                        <span class="Fn smaller-key-size">ENTER</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
