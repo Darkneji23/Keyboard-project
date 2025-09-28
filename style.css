@@ -252,17 +252,20 @@ img {
   width: calc(100vw * 158 / 1920);
 }
 .volume-regulator {
-  width: calc(100% / 3);
-  padding: 0 calc(100vw * 7.5 / 1920) 0 calc(100vw * 3 / 1920);
+  width: calc(100vw * 213 / 1920);
 }
 .volume {
   width: calc(100vw * 90 / 1920);
+  margin: 0 calc(100vw * 7.5 / 1920);
+}
+.volume-off-btn {
+  margin: 0 calc(100vw * 3 / 1920);
 }
 .arrow-up-btn {
   margin: auto;
 }
 .game-mode-rgb-control {
-  width: calc(100vh * 160 / 1081);
+  width: calc(100vh * 161 / 1081);
   padding: 0 calc(100vw * 3 / 1920);
 }
 .backspace-btn,
