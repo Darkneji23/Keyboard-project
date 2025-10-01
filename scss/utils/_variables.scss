@@ -1,0 +1,44 @@
+@use "sass:color";
+// Colours
+$text-white-color: #ffffff;
+$website-color: #252525;
+$keyboard-color: color.scale($website-color, $lightness: -40%);
+$input-field-color: $keyboard-color;
+$borders-color: #bebebe;
+// Viewport size
+$viewport-width: 1920;
+$viewport-height: 1080;
+// Keyboard size
+$keyboard-height: 570;
+$keyboard-width: 1300;
+// Input field size
+$input-field-width: 1000;
+$input-field-height: 100;
+
+// Panels and sections sizes
+$top-panel-height: 50;
+$middle-panel-width: 364;
+$symbol-keys-width: 798;
+$cursor-control-keys-width: 160;
+$calculator-width-regulating: $cursor-control-keys-width;
+$numpad-width: 213;
+$numpad-height: 280;
+$navigation-keys-width: 634;
+$function-keys-groups-width: 213;
+$navogation-claster-height: 280;
+$row-height: 50;
+$enter-key-width: 78;
+$img-width: 45;
+$key-width: 50;
+$key-height: 50;
+$indecators-width: $key-width;
+$shift-btn-width: 130;
+$smaller-nav-btn-width: 45;
+$smaller-nav-btn-height: 45;
+$led-width: 10;
+$led-height: 10;
+$ctrl-btn-width: 85;
+$bigger-btn-width: 63;
+$space-btn-width: 293;
+$space-line-width: 20;
+$space-line-height: 2;

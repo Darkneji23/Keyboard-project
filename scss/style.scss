@@ -1,56 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@use "base/reset";
+@use "utils/variables" as *;
+@use "utils/mixins" as *;
+@use "components/keyboard";
+@use "components/input";
+@use "utils/functions" as *;
 
-:root {
-  --viewport-width: 1920;
-  --viewport-height: 1080;
-
-  --keyboard-height: 570;
-  --keyboard-width: 1300;
-
-  --top-panel-height: 50;
-  --middle-panel-width: 364;
-
-  --symbol-keys-width: 798;
-  --cursor-control-keys-width: 160;
-  --calculator-width-regulating: var(--cursor-control-keys-width);
-  --numpad-width: 213;
-  --numpad-height: 280;
-  --navigation-keys-width: 634;
-  --function-keys-groups-width: 213;
-  --navogation-claster-height: 280;
-  --row-height: 50;
-
-  --enter-key-width: 78;
-  --img-width: 45;
-  --key-width: 50;
-  --key-height: 50;
-  --indecators-width: var(--key-width);
-  --shift-btn-width: 130;
-  --smaller-nav-btn-width: 45;
-  --smaller-nav-btn-height: 45;
-  --led-weight: 10;
-  --led-height: 10;
-  --ctrl-btn-width: 85;
-  --bigger-btn-width: 63;
-  --space-btn-width: 293;
-  --space-line-width: 20;
-  --space-line-height: 2;
-}
-label {
-  font-size: calc(100vw * 20 / var(--viewport-width));
-  color: #fff;
-  margin-bottom: calc(100vh * 10 / var(--viewport-height));
-}
-html,
-body {
-  background-color: rgb(53, 53, 53);
-}
 img {
-  width: calc(100vw * var(--img-width) / var(--viewport-width));
+  width: vw($img-width);
 }
 
 .volume-regulator,
@@ -80,94 +36,58 @@ img {
 }
 
 .flex-column-center,
-.input-container,
 .indicators,
-.keyboard,
 .key-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
-.input-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(
-    -50%,
-    calc(-50% - calc(100vh * 400 / var(--viewport-height)))
-  );
-}
-.text-form,
 .Fn {
   display: grid;
   justify-items: center;
   align-items: center;
 }
-
-.keyboard-input {
-  width: 50vw;
-  height: calc(100vh * 100 / var(--viewport-height));
-  font-size: calc(100vw * 18 / var(--viewport-width));
-  border-radius: calc(100vw * 8 / var(--viewport-width));
-  border: calc(100vw * 1.5 / var(--viewport-width)) solid #646464;
-  margin-bottom: calc(100vw * 40 / var(--viewport-width));
-  background: #222;
-  color: #fff;
-  transition: border 0.2s, box-shadow 0.2s;
-}
 .image {
   display: flex;
   align-items: center;
   animation: animate 5s linear infinite;
-  filter: drop-shadow(0 0 calc(100vw * 3 / var(--viewport-width)) #49ff18);
-}
-.keyboard {
-  border-radius: calc(100vw * 15 / var(--viewport-width));
-  width: calc(100% * var(--keyboard-width) / var(--viewport-width));
-  height: calc(100% * var(--keyboard-height) / var(--viewport-height));
-  background-color: #171616;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  align-items: flex-start;
+  filter: drop-shadow(0 0 calc(100vw * 3 / #{$viewport-width}) #49ff18);
 }
 .key {
-  font-size: calc(100vw * 13 / var(--viewport-width));
-  width: calc(100vw * var(--key-width) / var(--viewport-width));
-  height: calc(100vh * var(--key-height) / var(--viewport-height));
-  padding: calc(100vh * 2 / var(--viewport-height))
-    calc(100vw * 2 / var(--viewport-width));
-  border: calc(100vw * 1 / var(--viewport-width)) solid rgb(190, 190, 190);
-  border-radius: calc(100vw * 5 / var(--viewport-width));
+  font-size: calc(100vw * 13 / #{$viewport-width});
+  width: calc(100vw * #{$key-width} / #{$viewport-width});
+  height: calc(100vh * #{$key-height} / #{$viewport-height});
+  padding: calc(100vh * 2 / #{$viewport-height})
+    calc(100vw * 2 / #{$viewport-width});
+  border: calc(100vw * 1 / #{$viewport-width}) solid #bebebe;
+  border-radius: calc(100vw * 5 / #{$viewport-width});
   background-color: #171616;
-  box-shadow: 0 0 calc(100vh * 3 / var(--viewport-height)) #49ff18;
+  box-shadow: 0 0 calc(100vh * 3 / #{$viewport-height}) #49ff18;
   animation: animate 5s linear infinite;
 }
 .shift-btn {
-  width: calc(100vw * var(--shift-btn-width) / var(--viewport-width));
+  width: calc(100vw * #{$shift-btn-width} / #{$viewport-width});
 }
 .smaller-nav-btn {
-  height: calc(100vh * var(--smaller-nav-btn-width) / var(--viewport-height));
-  width: calc(100vw * var(--smaller-nav-btn-height) / var(--viewport-width));
+  height: calc(100vh * #{$smaller-nav-btn-width} / #{$viewport-height});
+  width: calc(100vw * #{$smaller-nav-btn-height} / #{$viewport-width});
 }
 .leds {
-  width: calc(100vw * var(--led-weight) / var(--viewport-width));
-  height: calc(100vh * var(--led-weight) / var(--viewport-height));
+  width: calc(100vw * #{$led-width} / #{$viewport-width});
+  height: calc(100vh * #{$led-width} / #{$viewport-height});
   background-color: white;
-  box-shadow: 0 0 calc(100vw * 15 / var(--viewport-width))
-    calc(100vw * 2 / var(--viewport-width)) #ffffff;
+  box-shadow: 0 0 calc(100vw * 15 / #{$viewport-width})
+    calc(100vw * 2 / #{$viewport-width}) #ffffff;
 }
 .indicator-text {
   white-space: nowrap;
-  font-size: calc(100vw * 8 / var(--viewport-width));
+  font-size: calc(100vw * 8 / #{$viewport-width});
   color: white;
-  margin-top: calc(100vh * 8 / var(--viewport-height));
+  margin-top: calc(100vh * 8 / #{$viewport-height});
 }
 .indicators {
   height: 100%;
-  width: calc(100vw * var(--indecators-width) / var(--viewport-width));
+  width: calc(100vw * #{$indecators-width} / #{$viewport-width});
   align-items: center;
 }
 .Fn {
@@ -175,86 +95,78 @@ img {
   height: 100%;
   color: white;
   background-color: #171616;
-  border: calc(100vw * 1 / var(--viewport-width)) solid rgb(190, 190, 190);
-  border-radius: calc(100vw * 5 / var(--viewport-width));
-  text-shadow: 0 0 calc(100vw * 2 / var(--viewport-width)) #49ff18;
-  transform: translate(0, calc(100vh * -5 / var(--viewport-height)));
-  box-shadow: 0 calc(100vh * 5 / var(--viewport-height)) 0 0 #49ff18;
+  border: calc(100vw * 1 / #{$viewport-width}) solid rgb(190, 190, 190);
+  border-radius: calc(100vw * 5 / #{$viewport-width});
+  text-shadow: 0 0 calc(100vw * 2 / #{$viewport-width}) #49ff18;
+  transform: translate(0, calc(100vh * -5 / #{$viewport-height}));
+  box-shadow: 0 calc(100vh * 5 / #{$viewport-height}) 0 0 #49ff18;
   transition: all 0.2s;
 }
 .Fn:hover {
   transform: translate(0, 0);
   box-shadow: 0 0 0 0 #49ff18;
 }
-
-.indentation {
-  height: 100%;
-  width: 100%;
-  padding: calc(100vh * 30 / var(--viewport-height))
-    calc(100vw * 40 / var(--viewport-width)) 0
-    calc(100vw * 40 / var(--viewport-width));
-}
 .symbol-keys {
-  width: calc(100vw * var(--symbol-keys-width) / var(--viewport-width));
+  width: calc(100vw * #{$symbol-keys-width} / #{$viewport-width});
 }
 .cursor-control-keys {
-  width: calc(100vw * var(--cursor-control-keys-width) / var(--viewport-width));
+  width: calc(100vw * #{$cursor-control-keys-width} / #{$viewport-width});
 }
 .top-panel {
-  height: calc(100vh * var(--top-panel-height) / var(--viewport-height));
-  margin-bottom: calc(100vh * 10 / var(--viewport-height));
+  height: calc(100vh * #{$top-panel-height} / #{$viewport-height});
+  margin-bottom: calc(100vh * 10 / #{$viewport-height});
 }
 
 .enter-icon {
-  font-size: calc(100vw * 20 / var(--viewport-width));
+  font-size: calc(100vw * 20 / #{$viewport-width});
 }
 .smaller-key-size {
-  font-size: calc(100vw * 9 / var(--viewport-width));
+  font-size: calc(100vw * 9 / #{$viewport-width});
 }
 .caps {
-  word-spacing: calc(100vw * 20 / var(--viewport-width));
-  margin-right: calc(100vw * 12 / var(--viewport-width));
+  word-spacing: calc(100vw * 20 / #{$viewport-width});
+  margin-right: calc(100vw * 12 / #{$viewport-width});
 }
 .row {
-  height: calc(100vh * var(--row-height) / var(--viewport-height));
-  margin: calc(100vh * 5 / var(--viewport-height))
-    calc(100vw * 1 / var(--viewport-width));
+  height: calc(100vh * #{$row-height} / #{$viewport-height});
+  margin: calc(100vh * 5 / #{$viewport-height})
+    calc(100vw * 1 / #{$viewport-width});
 }
 
 .ctrl-btn {
-  width: calc(100vw * var(--ctrl-btn-width) / var(--viewport-width));
+  width: calc(100vw * #{$ctrl-btn-width} / #{$viewport-width});
 }
 .bigger-btn {
-  width: calc(100vw * var(--bigger-btn-width) / var(--viewport-width));
+  width: calc(100vw * #{$bigger-btn-width} / #{$viewport-width});
 }
 #gg-space {
-  width: calc(100vw * var(--space-line-width) / var(--viewport-width));
-  height: calc(100vh * var(--space-line-height) / var(--viewport-width));
+  width: calc(100vw * #{$space-line-width} / #{$viewport-width});
+  height: calc(100vh * #{$space-line-height} / #{$viewport-width});
   background-color: white;
-  box-shadow: 0 0 calc(100vw * 2 / var(--viewport-width)) #49ff18;
+  box-shadow: 0 0 calc(100vw * 2 / #{$viewport-width}) #49ff18;
 }
 .space-btn {
-  width: calc(100vw * var(--space-btn-width) / var(--viewport-width));
+  width: calc(100vw * #{$space-btn-width} / #{$viewport-width});
 }
 .buttons {
-  height: calc(100vh * var(--middle-panel-width) / var(--viewport-height));
+  height: calc(100vh * #{$middle-panel-width} / #{$viewport-height});
 }
 .line_upper {
-  width: calc(100vw * 35 / var(--viewport-width));
-  height: calc(100vh * 1.5 / var(--viewport-width));
+  width: calc(100vw * 35 / #{$viewport-width});
+  height: calc(100vh * 1.5 / #{$viewport-width});
   background-color: white;
   margin: 0 auto;
-  box-shadow: 0 0 calc(100vw * 2 / var(--viewport-width)) #49ff18;
+  box-shadow: 0 0 calc(100vw * 2 / #{$viewport-width}) #49ff18;
 }
 .smaller-font-size {
-  font-size: calc(100vw * 8 / var(--viewport-width));
+  font-size: calc(100vw * 8 / #{$viewport-width});
 }
 
 .calculator {
-  height: calc(100vh * var(--numpad-height) / var(--viewport-height));
+  height: calc(100vh * #{$numpad-height} / #{$viewport-height});
 }
 .circle {
-  border-radius: calc(100vw * 40 / var(--viewport-width));
+  border-radius: calc(100vw * 40 / #{$viewport-width});
 }
 
 .key-text {
@@ -263,95 +175,83 @@ img {
 .extended-row,
 .enter-btn,
 .plus-btn {
-  height: calc(100vh * 105 / var(--viewport-height));
+  height: calc(100vh * 105 / #{$viewport-height});
 }
 .navigation-buttons {
   height: 100%;
   align-items: center;
-  width: calc(100vw * var(--navigation-keys-width) / var(--viewport-width));
+  width: calc(100vw * #{$navigation-keys-width} / #{$viewport-width});
 }
 .indicator-leds {
-  width: calc(
-    100vw * var(--function-keys-groups-width) / var(--viewport-width)
-  );
-  padding: calc(100vh * 8 / var(--viewport-height)) 0 0 0;
+  width: calc(100vw * #{$function-keys-groups-width} / #{$viewport-width});
+  padding: calc(100vh * 8 / #{$viewport-height}) 0 0 0;
   height: 100%;
 }
 .navigation-cluster {
-  height: calc(
-    100vh * var(--navogation-claster-height) / var(--viewport-height)
-  );
+  height: calc(100vh * #{$navogation-claster-height} / #{$viewport-height});
 }
 .numpad {
-  width: calc(100vw * var(--numpad-width) / var(--viewport-width));
+  width: calc(100vw * #{$numpad-width} / #{$viewport-width});
   height: 100%;
 }
 .width-regulating {
-  width: calc(
-    100vw * var(--calculator-width-regulating) / var(--viewport-width)
-  );
+  width: calc(100vw * #{$calculator-width-regulating} / #{$viewport-width});
 }
 .volume-regulator {
-  width: calc(100vw * var(--numpad-width) / var(--viewport-width));
+  width: calc(100vw * #{$numpad-width} / #{$viewport-width});
 }
 .volume {
-  width: calc(100vw * 90 / var(--viewport-width));
-  margin: 0 calc(100vw * 7.5 / var(--viewport-width));
+  width: calc(100vw * 90 / #{$viewport-width});
+  margin: 0 calc(100vw * 7.5 / #{$viewport-width});
 }
 .volume-off-btn {
-  margin: 0 calc(100vw * 3 / var(--viewport-width));
+  margin: 0 calc(100vw * 3 / #{$viewport-width});
 }
 .arrow-up-btn {
   margin: auto;
 }
 .game-mode-rgb-control {
-  width: calc(
-    100vh * var(--cursor-control-keys-width) / var(--viewport-height)
-  );
-  padding: 0 calc(100vw * 3 / var(--viewport-width));
+  width: calc(100vh * #{$cursor-control-keys-width} / #{$viewport-height});
+  padding: 0 calc(100vw * 3 / #{$viewport-width});
 }
 .backspace-btn,
 .caps-btn,
 .null-btn {
-  width: calc(100vw * 104 / var(--viewport-width));
+  width: calc(100vw * 104 / #{$viewport-width});
 }
 .tab-btn,
 .enter-key {
-  width: calc(100vw * var(--enter-key-width) / var(--viewport-width));
+  width: calc(100vw * #{$enter-key-width} / #{$viewport-width});
 }
 .btn-groups {
   height: 100%;
-  width: calc(
-    100vw * var(--function-keys-groups-width) / var(--viewport-width)
-  );
+  width: calc(100vw * #{$function-keys-groups-width} / #{$viewport-width});
 }
 .esc-btn {
-  width: calc(100vw * 50 / var(--viewport-width));
+  width: calc(100vw * 50 / #{$viewport-width});
 }
 .icon-stretch {
   transform: scaleX(1.25);
 }
 .bold-icon-brightness {
-  font-size: calc(100vw * 15 / var(--viewport-width));
-  filter: drop-shadow(
-    0 0 calc(100vw * 0.5 / var(--viewport-width)) currentColor
-  );
+  font-size: calc(100vw * 15 / #{$viewport-width});
+  filter: drop-shadow(0 0 calc(100vw * 0.5 / #{$viewport-width}) currentColor);
 }
 .bold-icon {
-  font-size: calc(100vw * 18 / var(--viewport-width));
+  font-size: calc(100vw * 18 / #{$viewport-width});
 }
 .volume-key {
-  padding: 0 calc(100vw * 10 / var(--viewport-width));
-  width: calc(100vw * 85 / var(--viewport-width));
+  padding: 0 calc(100vw * 10 / #{$viewport-width});
+  width: calc(100vw * 85 / #{$viewport-width});
   align-items: center;
   height: 100%;
-  font-size: calc(100vw * 20 / var(--viewport-width));
+  font-size: calc(100vw * 20 / #{$viewport-width});
 }
 .gg-minus {
-  width: calc(100vw * 12 / var(--viewport-width));
-  height: calc(100vh * 2 / var(--viewport-height));
+  width: calc(100vw * 12 / #{$viewport-width});
+  height: calc(100vh * 2 / #{$viewport-height});
   background-color: white;
-  box-shadow: 0 0 calc(100vw * 2 / var(--viewport-width)) #49ff18;
+  box-shadow: 0 0 calc(100vw * 2 / #{$viewport-width}) #49ff18;
 }
 @keyframes animate {
   0% {

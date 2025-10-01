@@ -1,0 +1,38 @@
+@use "../utils/mixins" as *;
+@use "../utils/variables" as *;
+@use "../utils/functions" as *;
+
+.keyboard {
+  @include absolute-center();
+  @include flex-column-center;
+  border-radius: vw(15);
+  @include sizing($keyboard-width, $keyboard-height);
+  background-color: $keyboard-color;
+  align-items: flex-start;
+  .indentation {
+    @include full-size;
+    padding: vh(30) vw(40) 0 vw(40);
+  }
+}
+.top-panel {
+  .image {
+  }
+  .navigation-buttons {
+    .indicator-leds {
+      .indicators {
+        .led {
+        }
+      }
+    }
+    .game-mode-rgb-control {
+      .btn-groups {
+        .btn {
+        }
+      }
+    }
+    .volume-regulator {
+      .volume-key {
+      }
+    }
+  }
+}

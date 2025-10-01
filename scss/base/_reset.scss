@@ -1,0 +1,18 @@
+@use "../utils/mixins" as *;
+@use "../utils/variables" as *;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Normalize / Reset */
+html {
+  font-size: 16px;
+}
+body {
+  line-height: 1.5;
+  background-color: $website-color;
+}

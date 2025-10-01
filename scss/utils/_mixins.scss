@@ -1,0 +1,42 @@
+@use "functions" as *;
+
+@mixin flex-row-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@mixin flex-column-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@mixin grid-absolute-center {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+@mixin input-style($radius, $border-width, $border-color) {
+  border-radius: vw($radius);
+  border: vw($border-width) solid $border-color;
+}
+@mixin absolute-center($x: -50%, $y: -50%) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate($x, $y);
+}
+@mixin sizing($width, $height: auto) {
+  width: vw($width);
+  @if $height != auto {
+    height: vh($height);
+  }
+}
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,25 @@
+@use "../utils/mixins" as *;
+@use "../utils/variables" as *;
+@use "../utils/functions" as *;
+
+.input {
+  @include absolute-center(-50%, calc(-50% + vh-neg(400)));
+  @include flex-column-center;
+  .input-form {
+    @include flex-column-center;
+    align-items: center;
+    .input-label {
+      font-size: vw(20);
+      color: $text-white-color;
+      margin-bottom: vh(10);
+    }
+    .input-field {
+      @include sizing($input-field-width, $input-field-height);
+      background-color: $input-field-color;
+      color: $text-white-color;
+      font-size: vw(18);
+      margin-bottom: vw(40);
+      @include input-style(8, 1.5, $borders-color);
+    }
+  }
+}
