@@ -61,3 +61,16 @@
 @mixin animation-linear-infinite($name, $duration) {
   animation: $name $duration linear infinite;
 }
+@mixin box-shadow(
+  $offset-x: 0,
+  $offset-y: 0,
+  $blur-radius: 0,
+  $spread-radius: 0,
+  $color: $rgb-animation-name
+) {
+  box-shadow: vw($offset-x) vh($offset-y) vw($blur-radius) vw($spread-radius)
+    $color;
+}
+@mixin box-shadow-blur($blur-radius: 2, $color: $rgb-animation-name) {
+  @include box-shadow(0, 0, $blur-radius, 0, $color);
+}

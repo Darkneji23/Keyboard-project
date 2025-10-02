@@ -13,10 +13,14 @@
     padding: vh(30) vw(40) 0 vw(40);
   }
 }
+
 .top-panel {
+  @include flex-row-between;
+  height: $top-panel-height;
+  margin-bottom: vh(10);
   .image {
     @include flex-row-between(center);
-    @include animation-linear-infinite($rgb-animation-name, 5s);
+    @include animation-linear-infinite(animate, 5s);
     filter: drop-shadow(0 0 vw(3) $rgb-lighting-color);
   }
   img {
@@ -35,7 +39,7 @@
         .leds {
           @include sizing($led-width, $led-height);
           background-color: $background-white;
-          box-shadow: 0 0 vw(2) $rgb-lighting-color;
+          @include box-shadow-blur(13, $background-white);
         }
         .indicator-text {
           white-space: nowrap;
@@ -53,11 +57,62 @@
     .volume-regulator {
       @include flex-row-between();
       @include sizing($volum-regulator-section-width, 100%);
-      .volume-key {
+    }
+  }
+}
+
+.buttons {
+  @include flex-row-between;
+  height: vh($middle-panel-width);
+  .symbol-keys {
+    @include flex-column-between;
+    width: vw($symbol-keys-width);
+  }
+  .cursor-control-keys {
+    @include flex-column-between;
+    width: vw($cursor-control-keys-width);
+    .navigation-cluster {
+      @include flex-column-between;
+      height: vh($navigation-claster-height);
+      .key-group {
+        @include flex-column-between;
+      }
+      .move-keys {
+        @include flex-column-between;
+      }
+    }
+  }
+  .numpad {
+    @include flex-column-between;
+    @include sizing($numpad-width, 100%);
+    .calculator {
+      @include flex-row-between;
+      height: $numpad-height;
+      .width-regulating {
+        width: calc(
+          100vw * #{$calculator-width-regulating} / #{$viewport-width}
+        );
       }
     }
   }
 }
+
+.row {
+  @include flex-row-between;
+  height: vh($row-height);
+  margin: vh(5) vw(1);
+  .btn-groups {
+    @include flex-row-between;
+    @include sizing($function-keys-groups-width, 100%);
+    &.esc-btn {
+      width: vw(50);
+    }
+  }
+  &.extended-row {
+    height: vh(105);
+  }
+}
+
 .key {
   font-size: vw(13);
   @include sizing($key-width, $key-height);
@@ -78,6 +133,34 @@
   &.volume-off-btn {
     margin: 0 vw(3);
   }
+  &.bigger-btn {
+    width: vw($bigger-btn-width);
+  }
+  &.enter-key,
+  &.tab-btn {
+    width: vw($enter-key-width);
+  }
+  &.backspace-btn,
+  &.caps-btn,
+  &.null-btn {
+    width: vw(104);
+  }
+  &.shift-btn {
+    width: vw($shift-btn-width);
+  }
+  &.ctrl-btn {
+    width: vw($ctrl-btn-width);
+  }
+  &.space-btn {
+    width: vw($space-btn-width);
+  }
+  &.arrow-up-btn {
+    margin: 0 auto;
+  }
+  &.plus-btn,
+  &.enter-btn {
+    height: vw(105);
+  }
   .Fn {
     @include grid-absolute-center;
     cursor: pointer;
@@ -86,11 +169,38 @@
     background-color: $key-color;
     @include border-style;
     text-shadow: 0 0 vw(2) $rgb-lighting-color;
-    box-shadow: 0 vh(5) 0 0 $rgb-lighting-color;
+    @include box-shadow(0, 5, 0, 0, $rgb-lighting-color);
     transition: all 0.2s;
     @include transform-translate(0, vh-neg(5));
     &.circle {
       border-radius: vw(40);
+    }
+    &.control-keys-font {
+      font-size: vw(8);
+    }
+    &.enter-icon {
+      font-size: vw(20);
+    }
+    &.smaller-keys-front {
+      font-size: vw(9);
+    }
+    &:hover {
+      transform: translate(0, 0);
+      box-shadow: none;
+    }
+    #gg-space {
+      @include sizing($space-line-width, $space-line-height);
+      background-color: $background-white;
+      @include box-shadow-blur;
+    }
+    .key-text {
+      @include flex-column-center(center);
+      .line_upper {
+        @include sizing($line-upper-width, $line-upper-height);
+        background-color: $background-white;
+        margin: 0 auto;
+        @include box-shadow-blur;
+      }
     }
     .volume-key {
       @include flex-row-between(center);
@@ -100,16 +210,17 @@
       .gg-minus {
         @include sizing($minus-sign-width, $minus-sign-height);
         background-color: $background-white;
-        box-shadow: 0 0 vw(2) $rgb-lighting-color;
+        @include box-shadow-blur;
       }
+    }
+    .icon-stretch {
+      transform: scaleX(1.25);
+    }
+    .bold-icon {
+      font-size: vw(18);
+    }
+    .brightness-icon-brighter {
+      filter: drop-shadow(0 0 vw(0.5) currentColor);
     }
   }
 }
-
-/*.btn-groups {
-        @include sizing($function-keys-groups-width, 100%);
-        @include flex-row-between;
-        .btn {
-        }
-      }
-        */

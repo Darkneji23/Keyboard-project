@@ -68,6 +68,14 @@ body {
   padding: calc(100vh * 30 / 1080) calc(100vw * 40 / 1920) 0 calc(100vw * 40 / 1920);
 }
 
+.top-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 50;
+  margin-bottom: calc(100vh * 10 / 1080);
+}
 .top-panel .image {
   display: flex;
   flex-direction: row;
@@ -109,7 +117,7 @@ body {
   width: calc(100vw * 10 / 1920);
   height: calc(100vh * 10 / 1080);
   background-color: #ffffff;
-  box-shadow: 0 0 calc(100vw * 2 / 1920) #49ff18;
+  box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 13 / 1920) calc(100vw * 0 / 1920) #ffffff;
 }
 .top-panel .navigation-buttons .indicator-leds .indicators .indicator-text {
   white-space: nowrap;
@@ -134,6 +142,89 @@ body {
   width: calc(100vw * 213 / 1920);
   height: 100%;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  height: calc(100vh * 364 / 1080);
+}
+.buttons .symbol-keys {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: calc(100vw * 798 / 1920);
+}
+.buttons .cursor-control-keys {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: calc(100vw * 160 / 1920);
+}
+.buttons .cursor-control-keys .navigation-cluster {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: calc(100vh * 280 / 1080);
+}
+.buttons .cursor-control-keys .navigation-cluster .key-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.buttons .cursor-control-keys .navigation-cluster .move-keys {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.buttons .numpad {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: calc(100vw * 213 / 1920);
+  height: 100%;
+}
+.buttons .numpad .calculator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 280;
+}
+.buttons .numpad .calculator .width-regulating {
+  width: calc(100vw * 160 / 1920);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  height: calc(100vh * 50 / 1080);
+  margin: calc(100vh * 5 / 1080) calc(100vw * 1 / 1920);
+}
+.row .btn-groups {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: calc(100vw * 213 / 1920);
+  height: 100%;
+}
+.row .btn-groups.esc-btn {
+  width: calc(100vw * 50 / 1920);
+}
+.row.extended-row {
+  height: calc(100vh * 105 / 1080);
+}
+
 .key {
   font-size: calc(100vw * 13 / 1920);
   width: calc(100vw * 50 / 1920);
@@ -158,6 +249,30 @@ body {
 .key.volume-off-btn {
   margin: 0 calc(100vw * 3 / 1920);
 }
+.key.bigger-btn {
+  width: calc(100vw * 63 / 1920);
+}
+.key.enter-key, .key.tab-btn {
+  width: calc(100vw * 78 / 1920);
+}
+.key.backspace-btn, .key.caps-btn, .key.null-btn {
+  width: calc(100vw * 104 / 1920);
+}
+.key.shift-btn {
+  width: calc(100vw * 130 / 1920);
+}
+.key.ctrl-btn {
+  width: calc(100vw * 85 / 1920);
+}
+.key.space-btn {
+  width: calc(100vw * 293 / 1920);
+}
+.key.arrow-up-btn {
+  margin: 0 auto;
+}
+.key.plus-btn, .key.enter-btn {
+  height: calc(100vw * 105 / 1920);
+}
 .key .Fn {
   display: grid;
   justify-content: center;
@@ -170,12 +285,44 @@ body {
   border-radius: calc(100vw * 5 / 1920);
   border: calc(100vw * 1 / 1920) solid #bebebe;
   text-shadow: 0 0 calc(100vw * 2 / 1920) #49ff18;
-  box-shadow: 0 calc(100vh * 5 / 1080) 0 0 #49ff18;
+  box-shadow: calc(100vw * 0 / 1920) calc(100vh * 5 / 1080) calc(100vw * 0 / 1920) calc(100vw * 0 / 1920) #49ff18;
   transition: all 0.2s;
   transform: translate(0, calc(-100vh * 5 / 1080));
 }
 .key .Fn.circle {
   border-radius: calc(100vw * 40 / 1920);
+}
+.key .Fn.control-keys-font {
+  font-size: calc(100vw * 8 / 1920);
+}
+.key .Fn.enter-icon {
+  font-size: calc(100vw * 20 / 1920);
+}
+.key .Fn.smaller-keys-front {
+  font-size: calc(100vw * 9 / 1920);
+}
+.key .Fn:hover {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+.key .Fn #gg-space {
+  width: calc(100vw * 20 / 1920);
+  height: calc(100vh * 2 / 1080);
+  background-color: #ffffff;
+  box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 2 / 1920) calc(100vw * 0 / 1920) animate;
+}
+.key .Fn .key-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.key .Fn .key-text .line_upper {
+  width: calc(100vw * 35 / 1920);
+  height: calc(100vh * 1.5 / 1080);
+  background-color: #ffffff;
+  margin: 0 auto;
+  box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 2 / 1920) calc(100vw * 0 / 1920) animate;
 }
 .key .Fn .volume-key {
   display: flex;
@@ -191,188 +338,16 @@ body {
   width: calc(100vw * 12 / 1920);
   height: calc(100vh * 2 / 1080);
   background-color: #ffffff;
-  box-shadow: 0 0 calc(100vw * 2 / 1920) #49ff18;
+  box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 2 / 1920) calc(100vw * 0 / 1920) animate;
 }
-
-/*.btn-groups {
-        @include sizing($function-keys-groups-width, 100%);
-        @include flex-row-between;
-        .btn {
-        }
-      }
-        */
-.btn-groups,
-.calculator,
-.buttons,
-.top-panel,
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.navigation-cluster,
-.symbol-keys,
-.cursor-control-keys,
-.numpad,
-.key-group,
-.move-keys {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.flex-column-center,
-.key-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.shift-btn {
-  width: calc(100vw * 130 / 1920);
-}
-
-.Fn:hover {
-  transform: translate(0, 0);
-  box-shadow: 0 0 0 0 #49ff18;
-}
-
-.symbol-keys {
-  width: calc(100vw * 798 / 1920);
-}
-
-.cursor-control-keys {
-  width: calc(100vw * 160 / 1920);
-}
-
-.top-panel {
-  height: calc(100vh * 50 / 1080);
-  margin-bottom: calc(1000vh / 1080);
-}
-
-.enter-icon {
-  font-size: calc(2000vw / 1920);
-}
-
-.smaller-key-size {
-  font-size: calc(900vw / 1920);
-}
-
-.caps {
-  word-spacing: calc(2000vw / 1920);
-  margin-right: calc(1200vw / 1920);
-}
-
-.row {
-  height: calc(100vh * 50 / 1080);
-  margin: calc(500vh / 1080) calc(100vw / 1920);
-}
-
-.ctrl-btn {
-  width: calc(100vw * 85 / 1920);
-}
-
-.bigger-btn {
-  width: calc(100vw * 63 / 1920);
-}
-
-#gg-space {
-  width: calc(100vw * 20 / 1920);
-  height: calc(100vh * 2 / 1920);
-  background-color: white;
-  box-shadow: 0 0 calc(200vw / 1920) #49ff18;
-}
-
-.space-btn {
-  width: calc(100vw * 293 / 1920);
-}
-
-.buttons {
-  height: calc(100vh * 364 / 1080);
-}
-
-.line_upper {
-  width: calc(3500vw / 1920);
-  height: calc(150vh / 1920);
-  background-color: white;
-  margin: 0 auto;
-  box-shadow: 0 0 calc(200vw / 1920) #49ff18;
-}
-
-.smaller-font-size {
-  font-size: calc(800vw / 1920);
-}
-
-.calculator {
-  height: calc(100vh * 280 / 1080);
-}
-
-.key-text {
-  align-items: center;
-}
-
-.extended-row,
-.enter-btn,
-.plus-btn {
-  height: calc(10500vh / 1080);
-}
-
-.navigation-cluster {
-  height: calc(100vh * 280 / 1080);
-}
-
-.numpad {
-  width: calc(100vw * 213 / 1920);
-  height: 100%;
-}
-
-.width-regulating {
-  width: calc(100vw * 160 / 1920);
-}
-
-.arrow-up-btn {
-  margin: auto;
-}
-
-.backspace-btn,
-.caps-btn,
-.null-btn {
-  width: calc(10400vw / 1920);
-}
-
-.tab-btn,
-.enter-key {
-  width: calc(100vw * 78 / 1920);
-}
-
-.btn-groups {
-  height: 100%;
-  width: calc(100vw * 213 / 1920);
-}
-
-.esc-btn {
-  width: calc(5000vw / 1920);
-}
-
-.icon-stretch {
+.key .Fn .icon-stretch {
   transform: scaleX(1.25);
 }
-
-.bold-icon-brightness {
-  font-size: calc(1500vw / 1920);
-  filter: drop-shadow(0 0 calc(50vw / 1920) currentColor);
+.key .Fn .bold-icon {
+  font-size: calc(100vw * 18 / 1920);
 }
-
-.bold-icon {
-  font-size: calc(1800vw / 1920);
-}
-
-.gg-minus {
-  width: calc(1200vw / 1920);
-  height: calc(200vh / 1080);
-  background-color: white;
-  box-shadow: 0 0 calc(200vw / 1920) #49ff18;
+.key .Fn .brightness-icon-brighter {
+  filter: drop-shadow(0 0 calc(100vw * 0.5 / 1920) currentColor);
 }
 
 @keyframes animate {
