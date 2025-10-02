@@ -3,36 +3,113 @@
 @use "../utils/functions" as *;
 
 .keyboard {
-  @include absolute-center();
-  @include flex-column-center;
+  @include positioning_absolute-center();
+  @include flex-column-center(flex-start);
   border-radius: vw(15);
   @include sizing($keyboard-width, $keyboard-height);
   background-color: $keyboard-color;
-  align-items: flex-start;
   .indentation {
-    @include full-size;
+    @include sizing(100%, 100%);
     padding: vh(30) vw(40) 0 vw(40);
   }
 }
 .top-panel {
   .image {
+    @include flex-row-between(center);
+    @include animation-linear-infinite($rgb-animation-name, 5s);
+    filter: drop-shadow(0 0 vw(3) $rgb-lighting-color);
+  }
+  img {
+    @include sizing($img-width);
   }
   .navigation-buttons {
+    @include flex-row-between(center);
+    @include sizing($navigation-keys-width, 100%);
     .indicator-leds {
+      @include flex-row-between;
+      @include sizing($function-keys-groups-width, 100%);
+      padding: vh(8) 0 0 0;
       .indicators {
-        .led {
+        @include flex-column-center(center);
+        @include sizing($indicators-width, 100%);
+        .leds {
+          @include sizing($led-width, $led-height);
+          background-color: $background-white;
+          box-shadow: 0 0 vw(2) $rgb-lighting-color;
+        }
+        .indicator-text {
+          white-space: nowrap;
+          font-size: vw(8);
+          color: $text-white;
+          margin-top: vh(8);
         }
       }
     }
     .game-mode-rgb-control {
-      .btn-groups {
-        .btn {
-        }
-      }
+      @include sizing($cursor-control-keys-width, 100%);
+      @include flex-row-between;
+      padding: 0 vw(3);
     }
     .volume-regulator {
+      @include flex-row-between();
+      @include sizing($volum-regulator-section-width, 100%);
       .volume-key {
       }
     }
   }
 }
+.key {
+  font-size: vw(13);
+  @include sizing($key-width, $key-height);
+  padding: vh(2) vw(2);
+  @include border-style;
+  background-color: $key-color;
+  @include animation-linear-infinite(animate, 5s);
+  &.circle {
+    border-radius: vw(40);
+  }
+  &.smaller-nav-btn {
+    @include sizing($smaller-nav-btn-width, $smaller-nav-btn-height);
+  }
+  &.volume {
+    width: vw(90);
+    margin: 0 vw(7.5);
+  }
+  &.volume-off-btn {
+    margin: 0 vw(3);
+  }
+  .Fn {
+    @include grid-absolute-center;
+    cursor: pointer;
+    @include sizing(100%, 100%);
+    color: $text-white;
+    background-color: $key-color;
+    @include border-style;
+    text-shadow: 0 0 vw(2) $rgb-lighting-color;
+    box-shadow: 0 vh(5) 0 0 $rgb-lighting-color;
+    transition: all 0.2s;
+    @include transform-translate(0, vh-neg(5));
+    &.circle {
+      border-radius: vw(40);
+    }
+    .volume-key {
+      @include flex-row-between(center);
+      @include sizing($volume-btn-width, 100%);
+      padding: 0 vh(10);
+      font-size: vw(20);
+      .gg-minus {
+        @include sizing($minus-sign-width, $minus-sign-height);
+        background-color: $background-white;
+        box-shadow: 0 0 vw(2) $rgb-lighting-color;
+      }
+    }
+  }
+}
+
+/*.btn-groups {
+        @include sizing($function-keys-groups-width, 100%);
+        @include flex-row-between;
+        .btn {
+        }
+      }
+        */

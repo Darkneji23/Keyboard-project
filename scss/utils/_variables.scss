@@ -1,10 +1,16 @@
 @use "sass:color";
+//animations
+$rgb-animation-name: animate;
+
 // Colours
-$text-white-color: #ffffff;
-$website-color: #252525;
-$keyboard-color: color.scale($website-color, $lightness: -40%);
+$text-white: #ffffff;
+$background-white: #ffffff;
+$website-bg-color: #252525;
+$keyboard-color: color.scale($website-bg-color, $lightness: -40%);
+$key-color: $keyboard-color;
 $input-field-color: $keyboard-color;
 $borders-color: #bebebe;
+$rgb-lighting-color: #49ff18;
 // Viewport size
 $viewport-width: 1920;
 $viewport-height: 1080;
@@ -24,6 +30,7 @@ $calculator-width-regulating: $cursor-control-keys-width;
 $numpad-width: 213;
 $numpad-height: 280;
 $navigation-keys-width: 634;
+$volum-regulator-section-width: $numpad-width;
 $function-keys-groups-width: 213;
 $navogation-claster-height: 280;
 $row-height: 50;
@@ -31,7 +38,7 @@ $enter-key-width: 78;
 $img-width: 45;
 $key-width: 50;
 $key-height: 50;
-$indecators-width: $key-width;
+$indicators-width: $key-width;
 $shift-btn-width: 130;
 $smaller-nav-btn-width: 45;
 $smaller-nav-btn-height: 45;
@@ -42,3 +49,6 @@ $bigger-btn-width: 63;
 $space-btn-width: 293;
 $space-line-width: 20;
 $space-line-height: 2;
+$volume-btn-width: 85;
+$minus-sign-width: 12;
+$minus-sign-height: 2;

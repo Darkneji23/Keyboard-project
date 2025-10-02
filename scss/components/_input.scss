@@ -3,23 +3,22 @@
 @use "../utils/functions" as *;
 
 .input {
-  @include absolute-center(-50%, calc(-50% + vh-neg(400)));
+  @include positioning_absolute-center(-50%, calc(-50% + vh-neg(400)));
   @include flex-column-center;
-  .input-form {
-    @include flex-column-center;
-    align-items: center;
+  &-form {
+    @include flex-column-center(center);
     .input-label {
       font-size: vw(20);
-      color: $text-white-color;
+      color: $text-white;
       margin-bottom: vh(10);
     }
     .input-field {
       @include sizing($input-field-width, $input-field-height);
       background-color: $input-field-color;
-      color: $text-white-color;
+      color: $text-white;
       font-size: vw(18);
       margin-bottom: vw(40);
-      @include input-style(8, 1.5, $borders-color);
+      @include border-style(8, 1.5, $borders-color);
     }
   }
 }

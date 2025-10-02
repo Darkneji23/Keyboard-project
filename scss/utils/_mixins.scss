@@ -1,42 +1,63 @@
 @use "functions" as *;
+@use "variables" as *;
+@use "sass:string";
 
-@mixin flex-row-between {
+@mixin flex-row-between($align-items: stretch) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: $align-items;
 }
-@mixin flex-column-between {
+@mixin flex-column-between($align-items: stretch) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: $align-items;
 }
-@mixin flex-column-center {
+@mixin flex-column-center($align-items: stretch) {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: $align-items;
 }
-@mixin grid-absolute-center {
+@mixin grid-absolute-center() {
   display: grid;
   justify-content: center;
   align-items: center;
 }
-@mixin input-style($radius, $border-width, $border-color) {
+@mixin border-style(
+  $radius: 5,
+  $border-width: 1,
+  $border-color: $borders-color
+) {
   border-radius: vw($radius);
   border: vw($border-width) solid $border-color;
 }
-@mixin absolute-center($x: -50%, $y: -50%) {
+@mixin transform-translate($x, $y) {
+  transform: translate($x, $y);
+}
+@mixin positioning_absolute-center($x: -50%, $y: -50%) {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate($x, $y);
+  @include transform-translate($x, $y);
 }
-@mixin sizing($width, $height: auto) {
-  width: vw($width);
-  @if $height != auto {
+@mixin sizing($width: auto, $height: auto) {
+  @if $width == auto {
+    width: auto;
+  } @else if string.index($width + "", "%") {
+    width: $width;
+  } @else {
+    width: vw($width);
+  }
+  @if $height == auto {
+    height: auto;
+  } @else if string.index($height + "", "%") {
+    height: $height;
+  } @else {
     height: vh($height);
   }
 }
-@mixin full-size {
-  width: 100%;
-  height: 100%;
+@mixin animation-linear-infinite($name, $duration) {
+  animation: $name $duration linear infinite;
 }
