@@ -26,18 +26,18 @@ body {
   justify-content: center;
   align-items: stretch;
 }
-.input-form {
+.input__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.input-form .input-label {
+.input__form-label {
   font-size: calc(100vw * 20 / 1920);
   color: #ffffff;
   margin-bottom: calc(100vh * 10 / 1080);
 }
-.input-form .input-field {
+.input__form-field {
   width: calc(100vw * 1000 / 1920);
   height: calc(100vh * 100 / 1080);
   background-color: rgb(22.2, 22.2, 22.2);
@@ -62,7 +62,7 @@ body {
   height: calc(100vh * 570 / 1080);
   background-color: rgb(22.2, 22.2, 22.2);
 }
-.keyboard .indentation {
+.keyboard__inner {
   width: 100%;
   height: 100%;
   padding: calc(100vh * 30 / 1080) calc(100vw * 40 / 1920) 0 calc(100vw * 40 / 1920);
@@ -73,22 +73,24 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  height: 50;
+  height: calc(100vh * 50 / 1080);
   margin-bottom: calc(100vh * 10 / 1080);
 }
-.top-panel .image {
+.top-panel__image {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: calc(100vw * 45 / 1920);
+  height: auto;
   animation: animate 5s linear infinite;
   filter: drop-shadow(0 0 calc(100vw * 3 / 1920) #49ff18);
 }
-.top-panel img {
+.top-panel__image__logitech-logo {
   width: calc(100vw * 45 / 1920);
   height: auto;
 }
-.top-panel .navigation-buttons {
+.top-panel__nav-blocks {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -96,7 +98,7 @@ body {
   width: calc(100vw * 634 / 1920);
   height: 100%;
 }
-.top-panel .navigation-buttons .indicator-leds {
+.top-panel__nav-blocks .nav-blocks__led-indecators {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -105,7 +107,7 @@ body {
   height: 100%;
   padding: calc(100vh * 8 / 1080) 0 0 0;
 }
-.top-panel .navigation-buttons .indicator-leds .indicators {
+.top-panel__nav-blocks .nav-blocks__led-indecators .nav-blocks__indecator {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,19 +115,19 @@ body {
   width: calc(100vw * 50 / 1920);
   height: 100%;
 }
-.top-panel .navigation-buttons .indicator-leds .indicators .leds {
+.top-panel__nav-blocks .nav-blocks__led-indecators .nav-blocks__indecator-led {
   width: calc(100vw * 10 / 1920);
   height: calc(100vh * 10 / 1080);
   background-color: #ffffff;
   box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 13 / 1920) calc(100vw * 0 / 1920) #ffffff;
 }
-.top-panel .navigation-buttons .indicator-leds .indicators .indicator-text {
+.top-panel__nav-blocks .nav-blocks__led-indecators .nav-blocks__indecator-text {
   white-space: nowrap;
   font-size: calc(100vw * 8 / 1920);
   color: #ffffff;
   margin-top: calc(100vh * 8 / 1080);
 }
-.top-panel .navigation-buttons .game-mode-rgb-control {
+.top-panel__nav-blocks .nav-blocks__game-mode {
   width: calc(100vw * 160 / 1920);
   height: 100%;
   display: flex;
@@ -134,7 +136,7 @@ body {
   align-items: stretch;
   padding: 0 calc(100vw * 3 / 1920);
 }
-.top-panel .navigation-buttons .volume-regulator {
+.top-panel__nav-blocks .nav-blocks__vol-regulator {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -143,47 +145,47 @@ body {
   height: 100%;
 }
 
-.buttons {
+.main-panel {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
   height: calc(100vh * 364 / 1080);
 }
-.buttons .symbol-keys {
+.main-panel__symbol-keys {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   width: calc(100vw * 798 / 1920);
 }
-.buttons .cursor-control-keys {
+.main-panel__cursor-control-keys {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   width: calc(100vw * 160 / 1920);
 }
-.buttons .cursor-control-keys .navigation-cluster {
+.main-panel__cursor-control-keys .main-panel__navigation-cluster {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   height: calc(100vh * 280 / 1080);
 }
-.buttons .cursor-control-keys .navigation-cluster .key-group {
+.main-panel__cursor-control-keys .main-panel__navigation-cluster__editor-keys {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
 }
-.buttons .cursor-control-keys .navigation-cluster .move-keys {
+.main-panel__cursor-control-keys .main-panel__navigation-cluster__arrow-keys {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
 }
-.buttons .numpad {
+.main-panel__numpad {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -191,14 +193,14 @@ body {
   width: calc(100vw * 213 / 1920);
   height: 100%;
 }
-.buttons .numpad .calculator {
+.main-panel__numpad-calculator {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  height: 280;
+  height: calc(100vh * 280 / 1080);
 }
-.buttons .numpad .calculator .width-regulating {
+.main-panel__numpad-calculator .main-panel__numpad-width-regulating {
   width: calc(100vw * 160 / 1920);
 }
 
@@ -210,7 +212,10 @@ body {
   height: calc(100vh * 50 / 1080);
   margin: calc(100vh * 5 / 1080) calc(100vw * 1 / 1920);
 }
-.row .btn-groups {
+.row--featured-height {
+  height: calc(100vw * 105 / 1920);
+}
+.row__btn-groups {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -218,11 +223,8 @@ body {
   width: calc(100vw * 213 / 1920);
   height: 100%;
 }
-.row .btn-groups.esc-btn {
+.row__btn-groups--esc {
   width: calc(100vw * 50 / 1920);
-}
-.row.extended-row {
-  height: calc(100vh * 105 / 1080);
 }
 
 .key {
@@ -235,45 +237,55 @@ body {
   background-color: rgb(22.2, 22.2, 22.2);
   animation: animate 5s linear infinite;
 }
-.key.circle {
+.key--circle {
   border-radius: calc(100vw * 40 / 1920);
 }
-.key.smaller-nav-btn {
+.key--smaller-nav-btn {
   width: calc(100vw * 45 / 1920);
   height: calc(100vh * 45 / 1080);
 }
-.key.volume {
-  width: calc(100vw * 90 / 1920);
+.key--volume {
+  width: calc(100vw * 85 / 1920);
   margin: 0 calc(100vw * 7.5 / 1920);
 }
-.key.volume-off-btn {
+.key--volume-off {
+  font-size: calc(100vw * 17 / 1920);
   margin: 0 calc(100vw * 3 / 1920);
 }
-.key.bigger-btn {
+.key--wider {
   width: calc(100vw * 63 / 1920);
 }
-.key.enter-key, .key.tab-btn {
+.key--enter, .key--tab {
   width: calc(100vw * 78 / 1920);
 }
-.key.backspace-btn, .key.caps-btn, .key.null-btn {
-  width: calc(100vw * 104 / 1920);
+.key--backspace {
+  width: calc(100vw * 105 / 1920);
 }
-.key.shift-btn {
+.key--caps {
+  width: calc(100vw * 105 / 1920);
+}
+.key--null {
+  width: calc(100vw * 105 / 1920);
+}
+.key--shift {
   width: calc(100vw * 130 / 1920);
 }
-.key.ctrl-btn {
+.key--ctrl {
   width: calc(100vw * 85 / 1920);
 }
-.key.space-btn {
-  width: calc(100vw * 293 / 1920);
+.key--space {
+  width: calc(100vw * 290 / 1920);
 }
-.key.arrow-up-btn {
+.key--plus {
+  height: calc(100vh * 105 / 1080);
+}
+.key--enter-featured {
+  height: calc(100vh * 105 / 1080);
+}
+.key--single-arrow-up {
   margin: 0 auto;
 }
-.key.plus-btn, .key.enter-btn {
-  height: calc(100vw * 105 / 1920);
-}
-.key .Fn {
+.key__inner {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -289,42 +301,42 @@ body {
   transition: all 0.2s;
   transform: translate(0, calc(-100vh * 5 / 1080));
 }
-.key .Fn.circle {
+.key__inner--circle {
   border-radius: calc(100vw * 40 / 1920);
 }
-.key .Fn.control-keys-font {
+.key__inner--control-keys-font {
   font-size: calc(100vw * 8 / 1920);
 }
-.key .Fn.enter-icon {
+.key__inner--enter {
   font-size: calc(100vw * 20 / 1920);
 }
-.key .Fn.smaller-keys-front {
+.key__inner--smaller-front {
   font-size: calc(100vw * 9 / 1920);
 }
-.key .Fn:hover {
+.key__inner:hover {
   transform: translate(0, 0);
   box-shadow: none;
 }
-.key .Fn #gg-space {
+.key__inner__space {
   width: calc(100vw * 20 / 1920);
   height: calc(100vh * 2 / 1080);
   background-color: #ffffff;
   box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 2 / 1920) calc(100vw * 0 / 1920) animate;
 }
-.key .Fn .key-text {
+.key__inner__key-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.key .Fn .key-text .line_upper {
+.key__inner__key-text .key__inner__line-upper {
   width: calc(100vw * 35 / 1920);
   height: calc(100vh * 1.5 / 1080);
   background-color: #ffffff;
   margin: 0 auto;
   box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 2 / 1920) calc(100vw * 0 / 1920) animate;
 }
-.key .Fn .volume-key {
+.key__inner__volume-key {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -334,19 +346,19 @@ body {
   padding: 0 calc(100vh * 10 / 1080);
   font-size: calc(100vw * 20 / 1920);
 }
-.key .Fn .volume-key .gg-minus {
+.key__inner__volume-key__minus {
   width: calc(100vw * 12 / 1920);
   height: calc(100vh * 2 / 1080);
   background-color: #ffffff;
   box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 2 / 1920) calc(100vw * 0 / 1920) animate;
 }
-.key .Fn .icon-stretch {
+.key__inner__stretch {
   transform: scaleX(1.25);
 }
-.key .Fn .bold-icon {
+.key__inner__bold {
   font-size: calc(100vw * 18 / 1920);
 }
-.key .Fn .brightness-icon-brighter {
+.key__inner__brightness-up {
   filter: drop-shadow(0 0 calc(100vw * 0.5 / 1920) currentColor);
 }
 

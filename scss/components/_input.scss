@@ -5,14 +5,14 @@
 .input {
   @include positioning_absolute-center(-50%, calc(-50% + vh-neg(400)));
   @include flex-column-center;
-  &-form {
+  &__form {
     @include flex-column-center(center);
-    .input-label {
+    &-label {
       font-size: vw(20);
       color: $text-white;
       margin-bottom: vh(10);
     }
-    .input-field {
+    &-field {
       @include sizing($input-field-width, $input-field-height);
       background-color: $input-field-color;
       color: $text-white;

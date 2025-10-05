@@ -18,13 +18,13 @@
   <body>
     <main>
       <section class="input">
-        <form class="input-form" method="post">
-          <label class="input-label" for="entering"
+        <form class="input__form" method="post">
+          <label class="input__form-label" for="entering"
             >Enter the text using the keyboard</label
           >
           <textarea
             id="entering"
-            class="input-field"
+            class="input__form-field"
             placeholder=" Enter the text..."
             cols="2"
             rows="2"
@@ -32,54 +32,60 @@
         </form>
       </section>
       <section class="keyboard">
-        <div class="indentation">
+        <div class="keyboard__inner">
           <div class="top-panel">
-            <div class="image">
-              <img src="img/images.png" alt="Virtual keyboard logitech logo" />
+            <div class="top-panel__image">
+              <img
+                class="top-panel__image__logitech-logo"
+                src="img/images.png"
+                alt="Virtual keyboard logitech logo"
+              />
             </div>
-            <div class="navigation-buttons">
-              <div class="indicator-leds">
-                <div class="indicators">
-                  <div class="leds"></div>
-                  <span class="indicator-text">CAPS LOCK</span>
+            <div class="top-panel__nav-blocks">
+              <div class="nav-blocks__led-indecators">
+                <div class="nav-blocks__indecator">
+                  <div class="nav-blocks__indecator-led"></div>
+                  <span class="nav-blocks__indecator-text">CAPS LOCK</span>
                 </div>
-                <div class="indicators">
-                  <div class="leds"></div>
-                  <span class="indicator-text">NUM LOCK</span>
+                <div class="nav-blocks__indecator">
+                  <div class="nav-blocks__indecator-led"></div>
+                  <span class="nav-blocks__indecator-text">NUM LOCK</span>
                 </div>
-                <div class="indicators">
-                  <div class="leds"></div>
-                  <span class="indicator-text">SCROLL LOCK</span>
+                <div class="nav-blocks__indecator">
+                  <div class="nav-blocks__indecator-led"></div>
+                  <span class="nav-blocks__indecator-text">SCROLL LOCK</span>
                 </div>
-                <div class="indicators">
-                  <div class="leds"></div>
-                  <span class="indicator-text">WIN LOCK</span>
+                <div class="nav-blocks__indecator">
+                  <div class="nav-blocks__indecator-led"></div>
+                  <span class="nav-blocks__indecator-text">WIN LOCK</span>
                 </div>
               </div>
-              <div class="game-mode-rgb-control">
-                <button class="key circle smaller-nav-btn">
-                  <div class="Fn circle">
-                    <i class="bi bi-joystick bold-icon"></i>
+              <div class="nav-blocks__game-mode">
+                <button class="key key--circle key--smaller-nav">
+                  <div class="key__inner key__inner--circle">
+                    <i class="bi bi-joystick key__inner__bold"></i>
                   </div>
                 </button>
-                <button class="key circle smaller-nav-btn">
-                  <div class="Fn circle">
+                <button class="key key--circle key--smaller-nav">
+                  <div class="key__inner key__inner--circle">
                     <i
-                      class="bi bi-brightness-high bold-icon brightness-icon-brighter"
+                      class="bi bi-brightness-high bold-icon key__inner__brightness-up"
                     ></i>
                   </div>
                 </button>
               </div>
-              <div class="volume-regulator">
-                <button class="key circle smaller-nav-btn volume-off-btn">
-                  <div class="Fn circle">
+              <div class="nav-blocks__vol-regulator">
+                <button
+                  class="key key--circle key--smaller-nav key--volume-off"
+                >
+                  <div class="key__inner key__inner--circle">
                     <i class="bi bi-volume-mute bold-icon"></i>
                   </div>
                 </button>
-                <button class="key circle smaller-nav-btn volume">
-                  <div class="Fn circle">
-                    <div class="volume-key">
-                      <div class="gg-minus"></div>
+                <button class="key key--circle key--smaller-nav key--volume">
+                  <div class="key__inner key__inner--circle">
+                    <div class="key__inner__volume-key">
+                      <div class="key__inner__volume-key__minus"></div>
                       <span>+</span>
                     </div>
                   </div>
@@ -87,55 +93,55 @@
               </div>
             </div>
           </div>
-          <div class="buttons">
-            <div class="symbol-keys">
+          <div class="main-panel">
+            <div class="main-panel__symbol-keys">
               <div>
                 <div class="row">
-                  <div class="btn-groups esc-btn">
+                  <div class="row__btn-groups row__btn-groups--esc">
                     <button class="key">
-                      <span class="Fn">ESC</span>
+                      <span class="key__inner">ESC</span>
                     </button>
                   </div>
-                  <div class="btn-groups">
+                  <div class="row__btn-groups">
                     <button class="key">
-                      <span class="Fn">F1</span>
+                      <span class="key__inner">F1</span>
                     </button>
                     <button class="key">
-                      <span class="Fn">F2</span>
+                      <span class="key__inner">F2</span>
                     </button>
                     <button class="key">
-                      <span class="Fn">F3</span>
+                      <span class="key__inner">F3</span>
                     </button>
                     <button class="key">
-                      <span class="Fn">F4</span>
-                    </button>
-                  </div>
-                  <div class="btn-groups">
-                    <button class="key">
-                      <span class="Fn">F5</span>
-                    </button>
-                    <button class="key">
-                      <span class="Fn">F6</span>
-                    </button>
-                    <button class="key">
-                      <span class="Fn">F7</span>
-                    </button>
-                    <button class="key">
-                      <span class="Fn">F8</span>
+                      <span class="key__inner">F4</span>
                     </button>
                   </div>
-                  <div class="btn-groups">
+                  <div class="row__btn-groups">
                     <button class="key">
-                      <span class="Fn">F9</span>
+                      <span class="key__inner">F5</span>
                     </button>
                     <button class="key">
-                      <span class="Fn">F10</span>
+                      <span class="key__inner">F6</span>
                     </button>
                     <button class="key">
-                      <span class="Fn">F11</span>
+                      <span class="key__inner">F7</span>
                     </button>
                     <button class="key">
-                      <span class="Fn">F12</span>
+                      <span class="key__inner">F8</span>
+                    </button>
+                  </div>
+                  <div class="row__btn-groups">
+                    <button class="key">
+                      <span class="key__inner">F9</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">F10</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">F11</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">F12</span>
                     </button>
                   </div>
                 </div>
@@ -143,99 +149,101 @@
               <div>
                 <div class="row">
                   <button class="key">
-                    <span class="Fn">`</span>
+                    <span class="key__inner">`</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">1</span>
+                    <span class="key__inner">1</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">2</span>
+                    <span class="key__inner">2</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">3</span>
+                    <span class="key__inner">3</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">4</span>
+                    <span class="key__inner">4</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">5</span>
+                    <span class="key__inner">5</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">6</span>
+                    <span class="key__inner">6</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">7</span>
+                    <span class="key__inner">7</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">8</span>
+                    <span class="key__inner">8</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">9</span>
+                    <span class="key__inner">9</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">0</span>
+                    <span class="key__inner">0</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">-</span>
+                    <span class="key__inner">-</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">=</span>
+                    <span class="key__inner">=</span>
                   </button>
-                  <button class="key backspace-btn">
-                    <div class="Fn">
+                  <button class="key key--backspace">
+                    <div class="key__inner">
                       <i class="fa-solid fa-arrow-left fa-lg"></i>
                     </div>
                   </button>
                 </div>
 
                 <div class="row">
-                  <button class="key tab-btn">
-                    <span class="Fn smaller-keys-front">TAB</span>
+                  <button class="key key--tab">
+                    <span class="key__inner key__inner--smaller-front"
+                      >TAB</span
+                    >
                   </button>
                   <button class="key">
-                    <span class="Fn">Q</span>
+                    <span class="key__inner">Q</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">W</span>
+                    <span class="key__inner">W</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">E</span>
+                    <span class="key__inner">E</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">R</span>
+                    <span class="key__inner">R</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">T</span>
+                    <span class="key__inner">T</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">Y</span>
+                    <span class="key__inner">Y</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">U</span>
+                    <span class="key__inner">U</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">I</span>
+                    <span class="key__inner">I</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">O</span>
+                    <span class="key__inner">O</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">P</span>
+                    <span class="key__inner">P</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">[</span>
+                    <span class="key__inner">[</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">]</span>
+                    <span class="key__inner">]</span>
                   </button>
-                  <button class="key enter-key">
-                    <div class="Fn enter-icon">&#8629;</div>
+                  <button class="key key--enter">
+                    <div class="key__inner key__inner--enter">&#8629;</div>
                   </button>
                 </div>
 
                 <div class="row">
-                  <button class="key caps-btn">
-                    <div class="Fn smaller-keys-front">
+                  <button class="key key--caps">
+                    <div class="key__inner key__inner--smaller-front">
                       <div class="key-text">
                         <span class="top">CAPS</span>
                         <span class="bottom">LOCK</span>
@@ -243,139 +251,149 @@
                     </div>
                   </button>
                   <button class="key">
-                    <span class="Fn">A</span>
+                    <span class="key__inner">A</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">S</span>
+                    <span class="key__inner">S</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">D</span>
+                    <span class="key__inner">D</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">F</span>
+                    <span class="key__inner">F</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">G</span>
+                    <span class="key__inner">G</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">H</span>
+                    <span class="key__inner">H</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">J</span>
+                    <span class="key__inner">J</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">K</span>
+                    <span class="key__inner">K</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">L</span>
+                    <span class="key__inner">L</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">;</span>
+                    <span class="key__inner">;</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">'</span>
+                    <span class="key__inner">'</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">\</span>
+                    <span class="key__inner">\</span>
                   </button>
                   <button class="key">
-                    <span class="Fn"></span>
+                    <span class="key__inner"></span>
                   </button>
                 </div>
 
                 <div class="row">
-                  <button class="key shift-btn">
-                    <span class="Fn smaller-keys-front">SHIFT</span>
+                  <button class="key key--shift">
+                    <span class="key__inner key__inner--smaller-front"
+                      >SHIFT</span
+                    >
                   </button>
                   <button class="key">
-                    <span class="Fn">Z</span>
+                    <span class="key__inner">Z</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">X</span>
+                    <span class="key__inner">X</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">C</span>
+                    <span class="key__inner">C</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">V</span>
+                    <span class="key__inner">V</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">B</span>
+                    <span class="key__inner">B</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">N</span>
+                    <span class="key__inner">N</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">M</span>
+                    <span class="key__inner">M</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">&lt;</span>
+                    <span class="key__inner">&lt;</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">&gt;</span>
+                    <span class="key__inner">&gt;</span>
                   </button>
                   <button class="key">
-                    <span class="Fn">/</span>
+                    <span class="key__inner">/</span>
                   </button>
-                  <button class="key shift-btn">
-                    <span class="Fn smaller-keys-front">SHIFT</span>
+                  <button class="key key--shift">
+                    <span class="key__inner key__inner--smaller-front"
+                      >SHIFT</span
+                    >
                   </button>
                 </div>
 
                 <div class="row">
-                  <button class="key ctrl-btn">
-                    <span class="Fn smaller-keys-front">CTRL</span>
+                  <button class="key key--ctrl">
+                    <span class="key__inner key__inner--smaller-front"
+                      >CTRL</span
+                    >
                   </button>
-                  <button class="key bigger-btn">
-                    <div class="Fn">
+                  <button class="key key--wider">
+                    <div class="key__inner">
                       <i class="fa-brands fa-windows fa-lg"></i>
                     </div>
                   </button>
-                  <button class="key bigger-btn">
-                    <span class="Fn smaller-keys-front">ALT</span>
+                  <button class="key key--wider">
+                    <span class="key__inner key__inner--smaller-front"
+                      >ALT</span
+                    >
                   </button>
-                  <button class="key space-btn">
-                    <div class="Fn">
-                      <div id="gg-space"></div>
+                  <button class="key key--space">
+                    <div class="key__inner">
+                      <div class="key__inner__space"></div>
                     </div>
                   </button>
-                  <button class="key bigger-btn">
-                    <div class="Fn smaller-keys-front">
-                      <div class="key-text">
-                        <span class="top">ALT</span>
-                        <span class="bottom">GR</span>
+                  <button class="key key--wider">
+                    <div class="key__inner key__inner--smaller-front">
+                      <div class="key__inner__key-text">
+                        <span class="key__inner__top">ALT</span>
+                        <span class="key__inner__bottom">GR</span>
                       </div>
                     </div>
                   </button>
-                  <button class="key bigger-btn">
-                    <div class="Fn">
+                  <button class="key key--wider">
+                    <div class="key__inner">
                       <i class="fa-brands fa-windows fa-lg"></i>
                     </div>
                   </button>
-                  <button class="key bigger-btn">
-                    <div class="Fn">
+                  <button class="key key--wider">
+                    <div class="key__inner">
                       <i class="fa-solid fa-bars"></i>
                     </div>
                   </button>
-                  <button class="key ctrl-btn">
-                    <span class="Fn smaller-keys-front">CTRL</span>
+                  <button class="key key--ctrl">
+                    <span class="key__inner key__inner--smaller-front"
+                      >CTRL</span
+                    >
                   </button>
                 </div>
               </div>
             </div>
-            <div class="cursor-control-keys">
+            <div class="main-panel__cursor-control-keys">
               <div class="row">
                 <button class="key">
-                  <div class="Fn control-keys-font">
-                    <div class="key-text">
+                  <div class="key__inner key__inner--control-keys-font">
+                    <div class="key__inner__key-text">
                       <span>PRINT SCRN</span>
-                      <div class="line_upper"></div>
+                      <div class="key__inner__line-upper"></div>
                       <span>SYSRQ</span>
                     </div>
                   </div>
                 </button>
                 <button class="key">
-                  <div class="Fn control-keys-font">
+                  <div class="key__inner key__inner--control-keys-font">
                     <div class="key-text">
                       <span>SCROLL LOCK</span>
                     </div>
@@ -383,7 +401,7 @@
                 </button>
 
                 <button class="key">
-                  <div class="Fn control-keys-font">
+                  <div class="key__inner key__inner--control-keys-font">
                     <div class="key-text">
                       <span>PAUSE</span>
                       <div class="line_upper"></div>
@@ -392,52 +410,64 @@
                   </div>
                 </button>
               </div>
-              <div class="navigation-cluster">
-                <div class="key-group">
+              <div class="main-panel__navigation-cluster">
+                <div class="main-panel__navigation-cluster__editor-keys">
                   <div class="row">
                     <button class="key">
-                      <span class="Fn smaller-keys-front">INS</span>
+                      <span class="key__inner key__inner--smaller-front"
+                        >INS</span
+                      >
                     </button>
                     <button class="key">
-                      <span class="Fn smaller-keys-front">HOME</span>
+                      <span class="key__inner key__inner--smaller-front"
+                        >HOME</span
+                      >
                     </button>
                     <button class="key">
-                      <span class="Fn smaller-keys-front">PAGE UP</span>
+                      <span class="key__inner key__inner--smaller-front"
+                        >PAGE UP</span
+                      >
                     </button>
                   </div>
                   <div class="row">
                     <button class="key">
-                      <span class="Fn smaller-keys-front">DEL</span>
+                      <span class="key__inner key__inner--smaller-front"
+                        >DEL</span
+                      >
                     </button>
                     <button class="key">
-                      <span class="Fn smaller-keys-front">END</span>
+                      <span class="key__inner key__inner--smaller-front"
+                        >END</span
+                      >
                     </button>
                     <button class="key">
-                      <span class="Fn smaller-keys-front">PAGE DOWN</span>
+                      <span class="key__inner key__inner--smaller-front"
+                        >PAGE DOWN</span
+                      >
                     </button>
                   </div>
                 </div>
-                <div class="move-keys">
+                <div class="main-panel__navigation-cluster__arrow-keys">
                   <div class="row">
-                    <button class="key arrow-up-btn">
-                      <div class="Fn">
+                    <button class="key key--single-arrow-up">
+                      <div class="key__inner">
                         <i class="fa-solid fa-arrow-up"></i>
                       </div>
                     </button>
                   </div>
                   <div class="row">
                     <button class="key">
-                      <div class="Fn">
+                      <div class="key__inner">
                         <i class="fa-solid fa-arrow-left"></i>
                       </div>
                     </button>
                     <button class="key">
-                      <div class="Fn">
+                      <div class="key__inner">
                         <i class="fa-solid fa-arrow-down"></i>
                       </div>
                     </button>
                     <button class="key">
-                      <div class="Fn">
+                      <div class="key__inner">
                         <i class="fa-solid fa-arrow-right"></i>
                       </div>
                     </button>
@@ -445,109 +475,109 @@
                 </div>
               </div>
             </div>
-            <div class="numpad">
-              <div>
-                <div class="row">
-                  <button class="key circle">
-                    <div class="Fn circle">
-                      <i
-                        class="fa-solid fa-forward-step fa-sm icon-stretch"
-                      ></i>
-                    </div>
-                  </button>
-                  <button class="key circle">
-                    <div class="Fn circle">
-                      <i class="fa-solid fa-stop fa-sm"></i>
-                    </div>
-                  </button>
-                  <button class="key circle">
-                    <div class="Fn circle">
-                      <i
-                        class="fa-sharp fa-solid fa-backward-fast fa-sm icon-stretch"
-                      ></i>
-                    </div>
-                  </button>
-                  <button class="key circle">
-                    <div class="Fn circle">
-                      <i
-                        class="fa-sharp fa-solid fa-forward-fast fa-sm icon-stretch"
-                      ></i>
-                    </div>
-                  </button>
-                </div>
-              </div>
-              <div>
-                <div class="calculator">
-                  <div class="width-regulating">
-                    <div class="row">
-                      <button class="key">
-                        <div class="Fn smaller-keys-front">NUM LOCK</div>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">/</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">*</span>
-                      </button>
-                    </div>
-                    <div class="row">
-                      <button class="key">
-                        <span class="Fn">7</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">8</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">9</span>
-                      </button>
-                    </div>
-                    <div class="row">
-                      <button class="key">
-                        <span class="Fn">4</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">5</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">6</span>
-                      </button>
-                    </div>
-                    <div class="row">
-                      <button class="key">
-                        <span class="Fn">1</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">2</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">3</span>
-                      </button>
-                    </div>
-                    <div class="row">
-                      <button class="key null-btn">
-                        <span class="Fn">0</span>
-                      </button>
-                      <button class="key">
-                        <span class="Fn">,</span>
-                      </button>
-                    </div>
+            <div class="main-panel__numpad">
+              <div class="row">
+                <button class="key key--circle">
+                  <div class="key__inner key__inner--circle">
+                    <i
+                      class="fa-solid fa-forward-step fa-sm key__inner__stretch"
+                    ></i>
                   </div>
-                  <div>
-                    <div class="row">
-                      <button class="key">
-                        <span class="Fn">-</span>
-                      </button>
-                    </div>
-                    <div class="row extended-row">
-                      <button class="key plus-btn">
-                        <span class="Fn">+</span>
-                      </button>
-                    </div>
-                    <div class="row extended-row">
-                      <button class="key enter-btn">
-                        <span class="Fn smaller-keys-front">ENTER</span>
-                      </button>
-                    </div>
+                </button>
+                <button class="key key--circle">
+                  <div class="key__inner key__inner--circle">
+                    <i class="fa-solid fa-stop fa-sm"></i>
+                  </div>
+                </button>
+                <button class="key key--circle">
+                  <div class="key__inner key__inner--circle">
+                    <i
+                      class="fa-sharp fa-solid fa-backward-fast fa-sm icon-stretch"
+                    ></i>
+                  </div>
+                </button>
+                <button class="key key--circle">
+                  <div class="key__inner key__inner--circle">
+                    <i
+                      class="fa-sharp fa-solid fa-forward-fast fa-sm icon-stretch"
+                    ></i>
+                  </div>
+                </button>
+              </div>
+              <div class="main-panel__numpad-calculator">
+                <div class="main-panel__numpad-width-regulating">
+                  <div class="row">
+                    <button class="key">
+                      <div class="key__inner key__inner--smaller-front">
+                        NUM LOCK
+                      </div>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">/</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">*</span>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button class="key">
+                      <span class="key__inner">7</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">8</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">9</span>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button class="key">
+                      <span class="key__inner">4</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">5</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">6</span>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button class="key">
+                      <span class="key__inner">1</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">2</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">3</span>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button class="key key--null">
+                      <span class="key__inner">0</span>
+                    </button>
+                    <button class="key">
+                      <span class="key__inner">,</span>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <div class="row">
+                    <button class="key">
+                      <span class="key__inner">-</span>
+                    </button>
+                  </div>
+                  <div class="row row--featured-height">
+                    <button class="key key--plus">
+                      <span class="key__inner">+</span>
+                    </button>
+                  </div>
+                  <div class="row row--featured-height">
+                    <button class="key key--enter-featured">
+                      <span class="key__inner key__inner--smaller-front"
+                        >ENTER</span
+                      >
+                    </button>
                   </div>
                 </div>
               </div>
