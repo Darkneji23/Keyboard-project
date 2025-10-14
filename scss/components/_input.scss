@@ -3,8 +3,13 @@
 @use "../utils/functions" as *;
 
 .input {
+  opacity: 0;
   @include positioning_absolute-center(-50%, calc(-50% + vh-neg(400)));
   @include flex-column-center;
+  transition: all 2s ease;
+  &--show-effect {
+    @include show-effect(1);
+  }
   &__form {
     @include flex-column-center(center);
     &-label {

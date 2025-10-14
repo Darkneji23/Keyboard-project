@@ -3,11 +3,16 @@
 @use "../utils/functions" as *;
 
 .keyboard {
+  opacity: 0;
   @include positioning_absolute-center();
   @include flex-column-center(flex-start);
   border-radius: vw(15);
   @include sizing($keyboard-width, $keyboard-height);
   background-color: $keyboard-color;
+  transition: all 1s ease;
+  &--show-effect {
+    @include show-effect(1);
+  }
   &__inner {
     @include sizing(100%, 100%);
     padding: vh(30) vw(40) 0 vw(40);
@@ -190,8 +195,8 @@
     &--smaller-front {
       font-size: vw(9);
     }
-    &:hover {
-      transform: translate(0, 0);
+    &.pressed {
+      @include transform-translate(0, 0);
       box-shadow: none;
     }
     &__space {

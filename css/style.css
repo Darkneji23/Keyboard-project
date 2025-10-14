@@ -17,6 +17,7 @@ body {
 }
 
 .input {
+  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,6 +26,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  transition: all 1.5s ease;
+}
+.input--show-effect {
+  opacity: 1;
 }
 .input__form {
   display: flex;
@@ -49,6 +54,7 @@ body {
 }
 
 .keyboard {
+  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,6 +67,10 @@ body {
   width: calc(100vw * 1300 / 1920);
   height: calc(100vh * 570 / 1080);
   background-color: rgb(22.2, 22.2, 22.2);
+  transition: all 1s ease;
+}
+.keyboard--show-effect {
+  opacity: 1;
 }
 .keyboard__inner {
   width: 100%;
@@ -313,7 +323,7 @@ body {
 .key__inner--smaller-front {
   font-size: calc(100vw * 9 / 1920);
 }
-.key__inner:hover {
+.key__inner.pressed {
   transform: translate(0, 0);
   box-shadow: none;
 }

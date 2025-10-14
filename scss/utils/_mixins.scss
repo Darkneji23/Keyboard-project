@@ -74,3 +74,6 @@
 @mixin box-shadow-blur($blur-radius: 2, $color: $rgb-animation-name) {
   @include box-shadow(0, 0, $blur-radius, 0, $color);
 }
+@mixin show-effect($seconds) {
+  opacity: $seconds;
+}
