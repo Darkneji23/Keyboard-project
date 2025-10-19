@@ -203,6 +203,7 @@ for (i = 0; i < buttons.length; i++) {
   inputField.textContent += `${buttons[i].outerHTML} \n`;
 }
 */
+// Работа с клавишами кклавиатуры
 function setUpEvents() {
   const keyboard = document.getElementById("keyboard");
   const inputSection = document.querySelector(".input");
@@ -211,7 +212,7 @@ function setUpEvents() {
   setTimeout(() => inputSection.classList.add("input--show-effect"), 2000);
 
   const inputField = document.querySelector("#entering");
-  const symbolKeys = document.querySelectorAll(".key__inner");
+  const symbolKeys = document.querySelectorAll("#symbol-keys .key__inner");
   const forbiddenWords = ["sex"];
   const addForm = document.forms["input__form"];
 
@@ -284,7 +285,8 @@ function setUpEvents() {
     key.addEventListener("mouseup", releaseKey);
     key.addEventListener("mouseleave", releaseKey);
   });
-  /*
+
+  /* Не работающий корректно код!!!
 let inputFieldLength;
 let cursorVisible = true;
 const toggleCursor = () => {
@@ -410,7 +412,7 @@ setInterval(() => {
     //updateInputField("add", `${key.innerText}\n`);
   });
   */
-  /*
+  /* експерименты с Siblings
   let cursorPanel = document.querySelector(
     ".main-panel .main-panel__cursor-control-keys"
   );
