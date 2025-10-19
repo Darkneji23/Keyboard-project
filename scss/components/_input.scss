@@ -17,6 +17,14 @@
       color: $text-white;
       margin-bottom: vh(10);
     }
+    &-submit {
+      @include sizing(100, 40);
+      cursor: pointer;
+      background-color: $submit-btn-color;
+      color: $text-white;
+      @include border-style(2, 1.5);
+      margin-bottom: vw(20);
+    }
     &-field {
       @include sizing($input-field-width, $input-field-height);
       background-color: $input-field-color;

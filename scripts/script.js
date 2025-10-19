@@ -204,93 +204,228 @@ for (i = 0; i < buttons.length; i++) {
 }
 */
 function setUpEvents() {
-  var keyboard = document.getElementById("keyboard");
-  function showKeyboard() {
-    keyboard.classList.add("keyboard--show-effect");
-  }
-  setTimeout(showKeyboard, 1000);
+  const keyboard = document.getElementById("keyboard");
+  const inputSection = document.querySelector(".input");
 
-  var inputSection = document.getElementsByClassName("input");
-  function showInputField() {
-    inputSection[0].classList.add("input--show-effect");
-  }
-  setTimeout(showInputField, 2000);
+  setTimeout(() => keyboard.classList.add("keyboard--show-effect"), 1000);
+  setTimeout(() => inputSection.classList.add("input--show-effect"), 2000);
 
-  var inputField = document.getElementById("entering");
-  var symbolKeys = document
-    .getElementById("symbol-keys")
-    .getElementsByClassName("key__inner");
+  const inputField = document.querySelector("#entering");
+  const symbolKeys = document.querySelectorAll(".key__inner");
+  const forbiddenWords = ["sex"];
+  const addForm = document.forms["input__form"];
 
-  var forbiddenWords = ["sex"];
-
-  function checkForbiddenWords(text) {
-    for (i = 0; i < forbiddenWords.length; i++) {
-      if (
-        text.includes(forbiddenWords[i]) ||
-        text.includes(forbiddenWords[i].toUpperCase())
-      ) {
-        return forbiddenWords[i];
-      }
+  const updateInputField = (action, value = "", replaceValue = "") => {
+    switch (action) {
+      case "add":
+        inputField.value += value;
+        break;
+      case "delete":
+        inputField.textContent = inputField.value.slice(0, -1);
+        break;
+      case "replace":
+        inputField.textContent = inputField.value.replace(
+          new RegExp(value, "gi"),
+          replaceValue
+        );
+        break;
+      default:
+        console.warn("Неподдерживаемое действие:", action);
     }
-    return null;
-  }
-  for (var i = 0; i < symbolKeys.length; i++) {
-    symbolKeys[i].onmousedown = function () {
-      parent = this.parentElement;
-      this.classList.add("pressed");
-      if (this.querySelector(".key__inner__space")) {
-        inputField.textContent += ` `;
+  };
+
+  const checkForbiddenWords = (text) => {
+    return forbiddenWords.find(
+      (word) => text.includes(word) || text.includes(word.toUpperCase())
+    );
+  };
+
+  const handleForbiddenWord = (word) => {
+    document.body.style.backgroundColor = "red";
+    setTimeout(() => {
+      alert("Иди нахуй, сука!");
+      updateInputField("replace", word);
+      document.body.style.backgroundColor = "";
+    }, 50);
+  };
+
+  addForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = inputField.value.trim();
+    const encodedText = encodeURIComponent(value);
+    history.pushState({}, "", `?message=${encodedText}`);
+    inputField.value = "";
+  });
+
+  const releaseKey = function () {
+    this.classList.remove("pressed");
+    const forbidden = checkForbiddenWords(inputField.value);
+    if (forbidden) handleForbiddenWord(forbidden);
+  };
+
+  symbolKeys.forEach((key) => {
+    key.addEventListener("mousedown", (e) => {
+      key.classList.add("pressed");
+      const parent = key.parentElement;
+
+      if (key.querySelector(".key__inner__space")) {
+        updateInputField("add", " ");
       } else if (parent.classList.contains("key--backspace")) {
-        inputField.textContent = inputField.textContent.slice(0, -1);
-      } else if (
-        this.children.length > 0 ||
-        this.classList.contains("key__inner--enter") ||
-        this.classList.contains("key__inner--smaller-front")
-      ) {
+        updateInputField("delete");
+      } else if (key.classList.contains("key__inner--enter")) {
+        updateInputField("add", "\n");
+      } else if (e.shiftKey) {
+        updateInputField("add", key.textContent);
       } else {
-        inputField.textContent += `${this.textContent.toLowerCase()}`;
+        updateInputField("add", key.textContent.toLowerCase());
       }
-    };
+    });
 
-    symbolKeys[i].onmouseup = function () {
-      this.classList.remove("pressed");
-      var found = checkForbiddenWords(inputField.textContent);
-
-      if (found) {
-        document.body.style.backgroundColor = "red";
-        alert(`Иди нахуй, сука!`);
-        inputField.textContent = inputField.textContent.slice(0, -found.length);
-      }
-    };
-    symbolKeys[i].onmouseleave = function () {
-      this.classList.remove("pressed");
-      var found = checkForbiddenWords(inputField.textContent);
-      if (found) {
-        alert(`Иди нахуй, сука! ${found}`);
-        inputField.textContent = inputField.textContent.slice(0, -found.length);
-      }
-    };
+    key.addEventListener("mouseup", releaseKey);
+    key.addEventListener("mouseleave", releaseKey);
+  });
+  /*
+let inputFieldLength;
+let cursorVisible = true;
+const toggleCursor = () => {
+  if (cursorVisible) {
+    updateInputField("delete");
+  } else {
+    updateInputField("add", "_");
   }
+  cursorVisible = !cursorVisible;
+};
+setInterval(toggleCursor, 500);
+setInterval(() => {
+  console.log("Длина строки:", inputField.textContent.length);
+  inputFieldLength = inputField.textContent.length;
+}, 100);
+*/
+
+  /*
+  let radius = 10;
+  const pi = 3.14;
+  inputField.textContent += `${radius} ${pi}\n`;
+  inputField.textContent += `${radius / pi}\n`;
+  inputField.textContent += `${radius % 3}\n`;
+  inputField.textContent += `${pi * radius ** 2}\n`;
+*/
+  /*
+  let myString = `Белая ночь опустилась как облако
+Ветер гадает на юной листве
+Слышу знакомую речь, вижу облик твой
+Ну почему это только во сне?\n`;
+  for (let i = 0; i < myString.length; i++) {
+    setTimeout(() => {
+      inputField.textContent += myString[i];
+    }, 4100 + i * 50);
+  }
+    */
+  /*
+  let i = 0;
+  let ninjas = ["Dmytro", "Shaun", "Rick", "Daryl"];
+  ninjas.join(",");
+  //inputField.textContent += `${ninjas}\n`;
+  //inputField.textContent += `${ninjas.indexOf("Rick")}\n`;
+  ninjas.push("Ella");
+
+  while (i < ninjas.length) {
+    inputField.textContent += `${ninjas[i]}\n`;
+    i++;
+  }
+
+  /*
+  do {
+    inputField.textContent += `The value of i is ${i}\n`;
+    i++;
+  } while (i <= 5);
+*/
+  /*
+  const grade = "D";
+  switch (grade) {
+    case "A":
+      updateInputField("add", `you got an A grade!\n`);
+      break;
+    case "B":
+      updateInputField("add", `you got a B grade!\n`);
+      break;
+    case "C":
+      updateInputField("add", `you got a C grade!\n`);
+      break;
+    case "D":
+      updateInputField("add", `you got a D grade!\n`);
+      break;
+    case "E":
+      updateInputField("add", `you got an E grade!\n`);
+      break;
+    default:
+      updateInputField("add", `not a valid grade\n`);
+  }
+      */
+  /*
+  let user = {
+    name: "Dmytro",
+    age: "32",
+    email: "dg318842@gmail.com",
+    blogs: [
+      { title: "Why mac & cheese rules", likes: 1500 },
+      { title: "10 things to make with marmite", likes: 6000 },
+    ],
+    logBlogs() {
+      updateInputField("add", `This user has written the following blogs: \n`);
+      this.blogs.forEach((blog) => {
+        updateInputField("add", `${blog.title}, ${blog.likes} likes\n`);
+      });
+    },
+  };
+  updateInputField("add", `${user}\n`);
+  updateInputField("add", `${user["name"]}\n`);
+  user.name = "Sasha";
+  updateInputField("add", `${user["name"]}\n`);
+  updateInputField("add", `${user.age}\n`);
+  user["age"] = 25;
+  updateInputField("add", `${user.age}\n`);
+  updateInputField("add", `${typeof user}\n`);
+  user.logBlogs();
+  */
+  /*updateInputField("add", Math.PI + "\n");
+  let area = 7.2;
+  area = 7.7;
+  updateInputField("add", Math.round(area) + "\n");
+  updateInputField("add", Math.floor(area) + "\n");
+  updateInputField("add", Math.trunc(area) + "\n");
+  area = 7.2
+  updateInputField("add", Math.ceil(area) + "\n");
+  updateInputField("add", Math.random() + "\n");
+  updateInputField("add", Math.round(Math.random() * 100) + "\n");
+  */
+  /*
+  let keys = document.querySelectorAll("#symbol-keys .row .key__inner");
+
+  Array.from(keys).forEach((key) => {
+    updateInputField(
+      "add",
+      `${key.nodeName} ${key.hasChildNodes()} ${key.innerText}\n`
+    );
+    //updateInputField("add", `${key.innerText}\n`);
+  });
+  */
+  /*
+  let cursorPanel = document.querySelector(
+    ".main-panel .main-panel__cursor-control-keys"
+  );
+  let mainPanel = cursorPanel.previousElementSibling;
+  let numpadPanel = cursorPanel.nextElementSibling;
+  const panel = [cursorPanel, mainPanel, numpadPanel];
+  let printPanel = [];
+  panel.forEach((parts) => {
+    printPanel.push(parts.cloneNode(false));
+  });
+  printPanel.forEach((part) => {
+    updateInputField("add", `${part.outerHTML}\n`);
+  });
+  */
 }
 window.onload = function () {
   setUpEvents();
 };
-/*
-Привет! Я хотел обсудить созвон, но пока не успел выполнить всё, что ты поручил изучить.
-На данный момент могу показать только практические задания и наработки, которые делал во время просмотра видеоуроков.
-Я полностью просмотрел весь плейлист по основам JavaScript от The Net Ninja. 
-После каждого урока я старался закреплять теоретические знания практикой, выполняя собственные примеры кода.
-В процессе обучения я изучил синтаксис JavaScript и базовые принципы работы языка;
-разобрался с типами данных, их преобразованием и использованием;
-0своил условные конструкции (if, else if) и циклы (for, while);
-научился создавать и вызывать функции, а также различать локальные и глобальные переменные;
-работал с массивами и объектами, включая их методы и создание через функции-конструкторы;
-практиковался с методами строк (String) и объектом Math;
-изучил основы работы с датами с помощью объекта Date;
-освоил манипуляции с DOM — получение, изменение и удаление HTML-элементов через JavaScript;
-изучил обработку событий (events) и реализовал интерактивные элементы с помощью слушателей событий (onmousedown, onmouseup, onmouseleave);
-
-
-Следующим шагом планирую пройти курсы от The Net Ninja по modern js > async js > the DOM tutorial > object orienteed js и после этого typescript
-
-*/

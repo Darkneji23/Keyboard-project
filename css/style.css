@@ -26,7 +26,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  transition: all 1.5s ease;
+  transition: all 2s ease;
 }
 .input--show-effect {
   opacity: 1;
@@ -41,6 +41,16 @@ body {
   font-size: calc(100vw * 20 / 1920);
   color: #ffffff;
   margin-bottom: calc(100vh * 10 / 1080);
+}
+.input__form-submit {
+  width: calc(100vw * 100 / 1920);
+  height: calc(100vh * 40 / 1080);
+  cursor: pointer;
+  background-color: rgb(57.12, 57.12, 57.12);
+  color: #ffffff;
+  border-radius: calc(100vw * 2 / 1920);
+  border: calc(100vw * 1.5 / 1920) solid #bebebe;
+  margin-bottom: calc(100vw * 20 / 1920);
 }
 .input__form-field {
   width: calc(100vw * 1000 / 1920);

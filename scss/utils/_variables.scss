@@ -9,6 +9,7 @@ $website-bg-color: #252525;
 $keyboard-color: color.scale($website-bg-color, $lightness: -40%);
 $key-color: $keyboard-color;
 $input-field-color: $keyboard-color;
+$submit-btn-color: color.scale($input-field-color, $lightness: +15%);
 $borders-color: #bebebe;
 $rgb-lighting-color: #49ff18;
 // Viewport size
