@@ -203,7 +203,7 @@ for (i = 0; i < buttons.length; i++) {
   inputField.textContent += `${buttons[i].outerHTML} \n`;
 }
 */
-function setUpEvents() {
+document.addEventListener("DOMContentLoaded", () => {
   const keyboard = document.getElementById("keyboard");
   const inputSection = document.querySelector(".input");
 
@@ -215,16 +215,43 @@ function setUpEvents() {
   const forbiddenWords = ["sex"];
   const addForm = document.forms["input__form"];
 
+  const ledIndecators = document.querySelectorAll(
+    ".nav-blocks__indecator .nav-blocks__indecator-led"
+  );
+  const capsIndecator = ledIndecators[0];
+  const numIndecator = ledIndecators[1];
+  const scrollIndecator = ledIndecators[2];
+  const winIndecator = ledIndecators[3];
+
+  const winKeys = document.querySelectorAll(".key.key--win .key__inner");
+  const shiftLeftKey = document.querySelector("#shift--left .key__inner");
+  const shiftRightKey = document.querySelector("#shift--right .key__inner");
+  const spaceKey = document.querySelector(".key.key--space .key__inner");
+  const tabKey = document.querySelector(".key.key--tab .key__inner");
+  const enterKey = document.querySelector(".key.key--enter .key__inner");
+  const capsLockKey = document.querySelector(".key.key--caps .key__inner");
+  const ctrlKeys = document.querySelector(".key.key--ctrl .key__inner");
+  const backspaceKey = document.querySelector(
+    ".key.key--backspace .key__inner"
+  );
+  const numLockKey = document.querySelector("#num-lock .key__inner");
+  const scrollLockKey = document.querySelector("#scroll-lock .key__inner");
+
+  let isCapsOn = false;
+  let isNumLockOn = false;
+  let isWinOn = false;
+  let isScrollOn = false;
+
   const updateInputField = (action, value = "", replaceValue = "") => {
     switch (action) {
       case "add":
         inputField.value += value;
         break;
       case "delete":
-        inputField.textContent = inputField.value.slice(0, -1);
+        inputField.value = inputField.value.slice(0, -1);
         break;
       case "replace":
-        inputField.textContent = inputField.value.replace(
+        inputField.value = inputField.value.replace(
           new RegExp(value, "gi"),
           replaceValue
         );
@@ -263,27 +290,137 @@ function setUpEvents() {
     if (forbidden) handleForbiddenWord(forbidden);
   };
 
+  // Обработка нажатия мышью на виртуальную клавиатуру
   symbolKeys.forEach((key) => {
     key.addEventListener("mousedown", (e) => {
       key.classList.add("pressed");
       const parent = key.parentElement;
 
-      if (key.querySelector(".key__inner__space")) {
-        updateInputField("add", " ");
+      if (
+        parent.classList.contains("key--shift") ||
+        parent.classList.contains("key--ctrl") ||
+        parent.classList.contains("key--alt")
+      ) {
+      } else if (parent.classList.contains("key--caps")) {
+        isCapsOn = !isCapsOn;
+        capsIndecator.classList.toggle("on", isCapsOn);
+      } else if (parent.classList.contains("key--num-lock")) {
+        isNumLockOn = !isNumLockOn;
+        numIndecator.classList.toggle("on", isNumLockOn);
+      } else if (parent.classList.contains("key--win")) {
+        isWinOn = !isWinOn;
+        winIndecator.classList.toggle("on", isWinOn);
+      } else if (parent.classList.contains("key--scroll-lock")) {
+        isScrollOn = !isScrollOn;
+        scrollIndecator.classList.toggle("on", isScrollOn);
       } else if (parent.classList.contains("key--backspace")) {
         updateInputField("delete");
+      } else if (parent.classList.contains("key--tab")) {
+        updateInputField("add", "   ");
       } else if (key.classList.contains("key__inner--enter")) {
         updateInputField("add", "\n");
-      } else if (e.shiftKey) {
-        updateInputField("add", key.textContent);
+      } else if (key.querySelector(".key__inner__space")) {
+        updateInputField("add", " ");
       } else {
-        updateInputField("add", key.textContent.toLowerCase());
+        // Основные буквы и символы
+        let char = key.textContent;
+        if ((isCapsOn && !e.shiftKey) || (!isCapsOn && e.shiftKey))
+          char = char.toUpperCase();
+        else char = char.toLowerCase();
+        updateInputField("add", char);
       }
     });
 
     key.addEventListener("mouseup", releaseKey);
     key.addEventListener("mouseleave", releaseKey);
   });
+
+  // Обработка реальной клавиатуры
+  document.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    if (e.code === "ShiftLeft") {
+      if (shiftLeftKey) shiftLeftKey.classList.add("pressed");
+      return;
+    } else if (e.code === "ShiftRight") {
+      if (shiftRightKey) shiftRightKey.classList.add("pressed");
+      return;
+    } else if (e.code === "MetaLeft") {
+      if (winKeys) winKeys[0].classList.add("pressed");
+      return;
+    } else if (e.code === "MetaRight") {
+      if (winKeys) winKeys[1].classList.add("pressed");
+      return;
+    } else if (e.key === "ScrollLock") {
+      if (scrollLockKey) scrollLockKey.classList.add("pressed");
+      isScrollOn = !isScrollOn;
+      scrollIndecator.classList.toggle("on", isScrollOn);
+      return;
+    } else if (e.key === "CapsLock") {
+      if (capsLockKey) capsLockKey.classList.add("pressed");
+      isCapsOn = !isCapsOn;
+      capsIndecator.classList.toggle("on", isCapsOn);
+      return;
+    } else if (e.key === "NumLock") {
+      if (numLockKey) numLockKey.classList.add("pressed");
+      isNumLockOn = !isNumLockOn;
+      numIndecator.classList.toggle("on", isNumLockOn);
+      return;
+    } else if (e.key === "Backspace") {
+      updateInputField("delete");
+      if (backspaceKey) backspaceKey.classList.add("pressed");
+      return;
+    } else if (e.key === "Enter") {
+      updateInputField("add", "\n");
+      if (enterKey) enterKey.classList.add("pressed");
+      return;
+    } else if (e.key === "Tab") {
+      updateInputField("add", "   ");
+      if (tabKey) tabKey.classList.add("pressed");
+      return;
+    } else if (e.key === " ") {
+      updateInputField("add", " ");
+      if (spaceKey) spaceKey.classList.add("pressed");
+      return;
+    }
+
+    // Основные буквы
+    const keyElement = Array.from(symbolKeys).find(
+      (k) => k.textContent.toLowerCase() === e.key.toLowerCase()
+    );
+    if (keyElement) {
+      keyElement.classList.add("pressed");
+      let char = keyElement.textContent;
+      if ((isCapsOn && !e.shiftKey) || (!isCapsOn && e.shiftKey))
+        char = char.toUpperCase();
+      else char = char.toLowerCase();
+      // Если Shift зажат — оставляем верхний регистр
+      updateInputField("add", char);
+    }
+  });
+
+  document.addEventListener("keyup", (e) => {
+    let keyElement;
+
+    if (e.key === "Backspace") keyElement = backspaceKey;
+    else if (e.key === "CapsLock") keyElement = capsLockKey;
+    else if (e.key === "ScrollLock") keyElement = scrollLockKey;
+    else if (e.key === "Enter") keyElement = enterKey;
+    else if (e.key === "Tab") keyElement = tabKey;
+    else if (e.key === " ") keyElement = spaceKey;
+    else if (e.code === "ShiftLeft") keyElement = shiftLeftKey;
+    else if (e.code === "ShiftRight") keyElement = shiftRightKey;
+    else if (e.code === "MetaLeft") keyElement = winKeys[0];
+    else if (e.code === "MetaRight") keyElement = winKeys[1];
+    // Буквы и символы
+    else if (e.key !== "Shift") {
+      keyElement = Array.from(symbolKeys).find(
+        (k) => k.textContent.toLowerCase() === e.key.toLowerCase()
+      );
+    }
+
+    if (keyElement) keyElement.classList.remove("pressed");
+  });
+
   /*
 let inputFieldLength;
 let cursorVisible = true;
@@ -425,7 +562,4 @@ setInterval(() => {
     updateInputField("add", `${part.outerHTML}\n`);
   });
   */
-}
-window.onload = function () {
-  setUpEvents();
-};
+});

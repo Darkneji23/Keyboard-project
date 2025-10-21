@@ -44,6 +44,9 @@
         @include sizing($indicators-width, 100%);
         &-led {
           @include sizing($led-width, $led-height);
+          background-color: $led-indicators-off-color;
+        }
+        .on {
           background-color: $background-white;
           @include box-shadow-blur(13, $background-white);
         }
@@ -181,7 +184,7 @@
     @include border-style;
     text-shadow: 0 0 vw(2) $rgb-lighting-color;
     @include box-shadow(0, 5, 0, 0, $rgb-lighting-color);
-    transition: all 0.2s;
+    transition: all 0.1s;
     @include transform-translate(0, vh-neg(5));
     &--circle {
       border-radius: vw(40);

@@ -138,6 +138,9 @@ body {
 .top-panel__nav-blocks .nav-blocks__led-indecators .nav-blocks__indecator-led {
   width: calc(100vw * 10 / 1920);
   height: calc(100vh * 10 / 1080);
+  background-color: rgb(86.802, 86.802, 86.802);
+}
+.top-panel__nav-blocks .nav-blocks__led-indecators .nav-blocks__indecator .on {
   background-color: #ffffff;
   box-shadow: calc(100vw * 0 / 1920) calc(100vh * 0 / 1080) calc(100vw * 13 / 1920) calc(100vw * 0 / 1920) #ffffff;
 }
