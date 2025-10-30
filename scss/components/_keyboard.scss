@@ -9,7 +9,7 @@
   border-radius: vw(15);
   @include sizing($keyboard-width, $keyboard-height);
   background-color: $keyboard-color;
-  transition: all 1s ease;
+  transition: opacity 1s ease;
   &--show-effect {
     @include show-effect(1);
   }

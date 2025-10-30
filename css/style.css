@@ -77,7 +77,7 @@ body {
   width: calc(100vw * 1300 / 1920);
   height: calc(100vh * 570 / 1080);
   background-color: rgb(22.2, 22.2, 22.2);
-  transition: all 1s ease;
+  transition: opacity 1s ease;
 }
 .keyboard--show-effect {
   opacity: 1;
@@ -321,7 +321,7 @@ body {
   border: calc(100vw * 1 / 1920) solid #bebebe;
   text-shadow: 0 0 calc(100vw * 2 / 1920) #49ff18;
   box-shadow: calc(100vw * 0 / 1920) calc(100vh * 5 / 1080) calc(100vw * 0 / 1920) calc(100vw * 0 / 1920) #49ff18;
-  transition: all 0.2s;
+  transition: all 0.1s;
   transform: translate(0, calc(-100vh * 5 / 1080));
 }
 .key__inner--circle {

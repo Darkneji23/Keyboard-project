@@ -231,11 +231,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const enterKey = document.querySelector(".key.key--enter .key__inner");
   const capsLockKey = document.querySelector(".key.key--caps .key__inner");
   const ctrlKeys = document.querySelector(".key.key--ctrl .key__inner");
+  const fnKeys = document.querySelectorAll(".row__btn-groups .key__inner");
   const backspaceKey = document.querySelector(
     ".key.key--backspace .key__inner"
   );
   const numLockKey = document.querySelector("#num-lock .key__inner");
   const scrollLockKey = document.querySelector("#scroll-lock .key__inner");
+
+  const leftArrow = document.querySelector("#arrow-left .key__inner");
+  const rightArrow = document.querySelector("#arrow-right .key__inner");
+  const upArrow = document.querySelector("#arrow-up .key__inner");
+  const downArrow = document.querySelector("#arrow-down .key__inner");
 
   let isCapsOn = false;
   let isNumLockOn = false;
@@ -299,7 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (
         parent.classList.contains("key--shift") ||
         parent.classList.contains("key--ctrl") ||
-        parent.classList.contains("key--alt")
+        parent.classList.contains("key--alt") ||
+        parent.parentElement.classList.contains("row__btn-groups")
       ) {
       } else if (parent.classList.contains("key--caps")) {
         isCapsOn = !isCapsOn;
@@ -337,8 +344,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Обработка реальной клавиатуры
   document.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    if (e.code === "ShiftLeft") {
+    const normalKey = e.key.length === 1;
+    if (document.activeElement === inputField && normalKey) {
+      e.preventDefault();
+    }
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      const pos = inputField.selectionStart;
+      if (pos > 0) {
+        const newPos = Math.max(0, pos - 1);
+        inputField.setSelectionRange(newPos, newPos);
+      }
+      if (leftArrow) leftArrow.classList.add("pressed");
+      return;
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      const pos = inputField.selectionStart;
+      if (pos < inputField.value.length) {
+        const newPos = Math.min(inputField.value.length, pos + 1);
+        inputField.setSelectionRange(newPos, newPos);
+      }
+      if (rightArrow) rightArrow.classList.add("pressed");
+      return;
+    } else if (e.key === "ArrowUp") {
+      if (upArrow) upArrow.classList.add("pressed");
+      return;
+    } else if (e.key === "ArrowDown") {
+      if (downArrow) downArrow.classList.add("pressed");
+      return;
+    } else if (fnKeys) {
+      fnKeys.forEach((key) => {
+        if (key.textContent === e.key.toUpperCase()) {
+          e.preventDefault();
+          key.classList.add("pressed");
+        }
+      });
+      return;
+    } else if (e.code === "ShiftLeft") {
       if (shiftLeftKey) shiftLeftKey.classList.add("pressed");
       return;
     } else if (e.code === "ShiftRight") {
@@ -383,7 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Основные буквы
     const keyElement = Array.from(symbolKeys).find(
       (k) => k.textContent.toLowerCase() === e.key.toLowerCase()
     );
@@ -393,7 +434,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if ((isCapsOn && !e.shiftKey) || (!isCapsOn && e.shiftKey))
         char = char.toUpperCase();
       else char = char.toLowerCase();
-      // Если Shift зажат — оставляем верхний регистр
       updateInputField("add", char);
     }
   });
@@ -411,6 +451,10 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (e.code === "ShiftRight") keyElement = shiftRightKey;
     else if (e.code === "MetaLeft") keyElement = winKeys[0];
     else if (e.code === "MetaRight") keyElement = winKeys[1];
+    else if (e.code === "ArrowUp") keyElement = upArrow;
+    else if (e.code === "ArrowDown") keyElement = downArrow;
+    else if (e.code === "ArrowLeft") keyElement = leftArrow;
+    else if (e.code === "ArrowRight") keyElement = rightArrow;
     // Буквы и символы
     else if (e.key !== "Shift") {
       keyElement = Array.from(symbolKeys).find(
@@ -562,4 +606,154 @@ setInterval(() => {
     updateInputField("add", `${part.outerHTML}\n`);
   });
   */
+  class User {
+    #password;
+    constructor(name, age, email, password) {
+      this.name = name;
+      this.age = age;
+      this.email = email;
+      this.#password = password;
+      this.online = false;
+      this.score = 0;
+    }
+    login() {
+      this.online = true;
+      updateInputField("add", `\n${this.name} has logged in and now online\n`);
+      return this;
+    }
+    logout() {
+      this.online = false;
+      updateInputField("add", `${this.name} has logged out and now offline\n`);
+      return this;
+    }
+    getHiddenPassword() {
+      return "*".repeat(this.#password.length);
+    }
+    checkPassword(password) {
+      return this.#password === password;
+    }
+    printInfo(showHiddenPassword = false) {
+      let passwordDisplay = showHiddenPassword ? this.#password : "••••••••";
+
+      updateInputField(
+        "add",
+        `User info:\n Name: ${this.name}\n Age: ${this.age}\n Password: ${passwordDisplay}\n Score: ${this.score}\n Email: ${this.email}\n\n`
+      );
+      return this;
+    }
+    updateScore() {
+      this.score++;
+      updateInputField("add", `${this.name}'s score is now ${this.score}\n`);
+      return this;
+    }
+  }
+  class Admin extends User {
+    deleteUser(user) {
+      users = users.filter((u) => u.email !== user.email);
+      updateInputField(
+        "add",
+        `${this.name} deleted user with email: ${user.email}\n`
+      );
+      user = null;
+      return this;
+    }
+  }
+  let userOne = new User("Dmytro", 32, "dg318842@gmail.com", "mypassword123");
+  let userTwo = new User("Vova", 36, "vova228@gmail.com", "qwerty456");
+  userOne.login().updateScore().updateScore().printInfo(true).logout();
+  userTwo.login().updateScore().printInfo().logout();
+  let users = [userOne, userTwo];
+  let admin = new Admin("Sasha", 28, "sashaprivate@gmail.com", "adminpass789");
+  admin.login().deleteUser(userTwo).logout();
+  userTwo = null;
+  //callback hell example
+  /*
+  const getTodos = (resource, callback) => {
+    const request = new XMLHttpRequest();
+    request.addEventListener("readystatechange", () => {
+      if (request.readyState === 4 && request.status === 200) {
+        const data = JSON.parse(request.responseText);
+        callback(undefined, data);
+      } else if (request.readyState === 4) {
+        callback("could not fetch the data", undefined);
+      }
+    });
+    request.open("GET", resource);
+    //request.open("GET", "https://jsonplaceholder.typicode.com/todos/");
+    request.send();
+  };
+
+  getTodos("data/dima.json", (err, data) => {
+    console.log("callback fired");
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      getTodos("data/oskar.json", (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(data);
+          getTodos("data/misha.json", (err, data) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(data);
+            }
+          });
+        }
+      });
+    }
+  });
+  */
+  /*
+  //promise example
+
+  const getTodos = (resource) => {
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
+      request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+          const data = JSON.parse(request.responseText);
+          resolve(data);
+        } else if (request.readyState === 4) {
+          reject("could not fetch the data");
+        }
+      });
+      request.open("GET", resource);
+      //request.open("GET", "https://jsonplaceholder.typicode.com/todos/");
+      request.send();
+    });
+  };
+  getTodos("data/dima.json")
+    .then((data) => {
+      console.log("promise resolved:", data);
+      return getTodos("data/oskar.json");
+    })
+    .then((data) => {
+      console.log("promise resolved:", data);
+      return getTodos("data/misha.json");
+    })
+    .then((data) => {
+      console.log("promise resolved:", data);
+    })
+    .catch((err) => {
+      console.log("promise rejected:", err);
+    });
+    */
+  const getTodos = async (resource) => {
+    const responce = await fetch(resource);
+    if (!responce.ok) {
+      throw new Error("could not fetch the data");
+    }
+    const data = await responce.json();
+    return data;
+  };
+  console.log("before async/await 1");
+  console.log("before async/await 2");
+  getTodos("data/dima.json")
+    .then((data) => console.log("async/await resolved:", data))
+    .catch((err) => console.log("async/await rejected:", err.message));
+  console.log("after async/await 1");
+  console.log("after async/await 2");
 });
