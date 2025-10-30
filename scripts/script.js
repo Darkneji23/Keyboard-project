@@ -344,6 +344,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Обработка реальной клавиатуры
   document.addEventListener("keydown", (e) => {
+    const fnKey =
+      (fnKeys &&
+        Array.from(fnKeys).find(
+          (k) => k.textContent.toUpperCase() === e.key.toUpperCase()
+        )) ||
+      null;
+    if (fnKey) {
+      fnKey.classList.add("pressed");
+      return;
+    }
     const normalKey = e.key.length === 1;
     if (document.activeElement === inputField && normalKey) {
       e.preventDefault();
@@ -371,14 +381,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     } else if (e.key === "ArrowDown") {
       if (downArrow) downArrow.classList.add("pressed");
-      return;
-    } else if (fnKeys) {
-      fnKeys.forEach((key) => {
-        if (key.textContent === e.key.toUpperCase()) {
-          e.preventDefault();
-          key.classList.add("pressed");
-        }
-      });
       return;
     } else if (e.code === "ShiftLeft") {
       if (shiftLeftKey) shiftLeftKey.classList.add("pressed");
