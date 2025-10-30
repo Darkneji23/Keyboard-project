@@ -230,8 +230,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabKey = document.querySelector(".key.key--tab .key__inner");
   const enterKey = document.querySelector(".key.key--enter .key__inner");
   const capsLockKey = document.querySelector(".key.key--caps .key__inner");
-  const ctrlKeys = document.querySelector(".key.key--ctrl .key__inner");
+  const ctrlKeys = document.querySelectorAll(".key.key--ctrl .key__inner");
   const fnKeys = document.querySelectorAll(".row__btn-groups .key__inner");
+  const altKeys = document.querySelectorAll(".key.key--alt .key__inner");
   const backspaceKey = document.querySelector(
     ".key.key--backspace .key__inner"
   );
@@ -306,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
         parent.classList.contains("key--shift") ||
         parent.classList.contains("key--ctrl") ||
         parent.classList.contains("key--alt") ||
+        parent.classList.contains("key--menu") ||
         parent.parentElement.classList.contains("row__btn-groups")
       ) {
       } else if (parent.classList.contains("key--caps")) {
@@ -354,8 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fnKey.classList.add("pressed");
       return;
     }
-    const normalKey = e.key.length === 1;
-    if (document.activeElement === inputField && normalKey) {
+    if (document.activeElement === inputField) {
       e.preventDefault();
     }
     if (e.key === "ArrowLeft") {
@@ -394,6 +395,22 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (e.code === "MetaRight") {
       if (winKeys) winKeys[1].classList.add("pressed");
       return;
+    } else if (e.code === "ControlLeft") {
+      console.log("ctrl left");
+      if (ctrlKeys) ctrlKeys[0].classList.add("pressed");
+      return;
+    } else if (e.code === "ControlRight") {
+      console.log("ctrl right");
+      if (ctrlKeys) ctrlKeys[1].classList.add("pressed");
+      return;
+    } else if (e.code === "AltLeft") {
+      console.log("ctrl left");
+      if (altKeys) altKeys[0].classList.add("pressed");
+      return;
+    } else if (e.code === "AltRight") {
+      console.log("ctrl right");
+      if (altKeys) altKeys[1].classList.add("pressed");
+      return;
     } else if (e.key === "ScrollLock") {
       if (scrollLockKey) scrollLockKey.classList.add("pressed");
       isScrollOn = !isScrollOn;
@@ -412,12 +429,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (e.key === "Backspace") {
       updateInputField("delete");
       if (backspaceKey) backspaceKey.classList.add("pressed");
+      console.log(e.key.length);
       return;
     } else if (e.key === "Enter") {
       updateInputField("add", "\n");
       if (enterKey) enterKey.classList.add("pressed");
       return;
     } else if (e.key === "Tab") {
+      e.preventDefault();
       updateInputField("add", "   ");
       if (tabKey) tabKey.classList.add("pressed");
       return;
@@ -453,6 +472,10 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (e.code === "ShiftRight") keyElement = shiftRightKey;
     else if (e.code === "MetaLeft") keyElement = winKeys[0];
     else if (e.code === "MetaRight") keyElement = winKeys[1];
+    else if (e.code === "ControlLeft") keyElement = ctrlKeys[0];
+    else if (e.code === "ControlRight") keyElement = ctrlKeys[1];
+    else if (e.code === "AltLeft") keyElement = altKeys[0];
+    else if (e.code === "AltRight") keyElement = altKeys[1];
     else if (e.code === "ArrowUp") keyElement = upArrow;
     else if (e.code === "ArrowDown") keyElement = downArrow;
     else if (e.code === "ArrowLeft") keyElement = leftArrow;
