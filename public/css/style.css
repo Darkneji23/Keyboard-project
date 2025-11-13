@@ -293,7 +293,7 @@ body {
 .key--shift {
   width: calc(100vw * 130 / 1920);
 }
-.key--ctrl {
+.key--ctrl-left, .key--ctrl-right {
   width: calc(100vw * 85 / 1920);
 }
 .key--space {

@@ -160,7 +160,8 @@
   &--shift {
     width: vw($shift-btn-width);
   }
-  &--ctrl {
+  &--ctrl-left,
+  &--ctrl-right {
     width: vw($ctrl-btn-width);
   }
   &--space {
