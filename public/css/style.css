@@ -366,7 +366,7 @@ body {
   align-items: center;
   width: calc(100vw * 85 / 1920);
   height: 100%;
-  padding: 0 calc(100vh * 10 / 1080);
+  padding: 0 calc(100vh * 15 / 1080);
   font-size: calc(100vw * 20 / 1920);
 }
 .key__inner__volume-key__minus {

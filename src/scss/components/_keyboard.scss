@@ -220,7 +220,7 @@
     &__volume-key {
       @include flex-row-between(center);
       @include sizing($volume-btn-width, 100%);
-      padding: 0 vh(10);
+      padding: 0 vh(15);
       font-size: vw(20);
       &__minus {
         @include sizing($minus-sign-width, $minus-sign-height);

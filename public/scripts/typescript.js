@@ -8,7 +8,6 @@ class Keyboard {
     isNumLockOn;
     isWinOn;
     isScrollOn;
-    ledIndicators;
     capsIndicator;
     numIndicator;
     scrollIndicator;
@@ -36,6 +35,7 @@ class Keyboard {
     downArrow;
     addForm;
     forbiddenWords;
+    browserKeys;
     constructor() {
         this.initStates();
         this.initElements();
@@ -51,6 +51,7 @@ class Keyboard {
     }
     initElements() {
         this.forbiddenWords = ["sex"];
+        this.browserKeys = ["F11"];
         this.fnKeys = $divs(".row__btn-groups .key__inner");
         this.symbolKeys = $divs(".key__inner");
         this.inputField = $input("#entering");
@@ -85,47 +86,131 @@ class Keyboard {
             key.addEventListener("mouseup", () => this.releaseKey(key));
             key.addEventListener("mouseleave", () => this.releaseKey(key));
         });
+        console.log("mouse events created");
     }
     addKeyboardListeners() {
         document.addEventListener("keydown", this.handleKeyDown.bind(this));
         document.addEventListener("keyup", this.handleKeyUp.bind(this));
+        console.log("keybpard events created");
     }
     SubmitForm() {
-        this.addForm.addEventListener("submit", this.handleSubmiting.bind(this));
+        this.addForm.addEventListener("submit", this.handleSubmitting.bind(this));
+        console.log("submit form event created");
     }
-    handleSubmiting(event) {
+    handleSubmitting(event) {
         event.preventDefault();
         const currentValue = this.inputField.value.trim();
         const encodedText = encodeURIComponent(currentValue);
         history.pushState(null, "", `?text=${encodedText}`);
         this.inputField.value = "";
+        if (history) {
+            console.log(`the text ${currentValue} was submited`);
+        }
     }
     handleKeyDown(e) {
         const fnKey = Array.from(this.fnKeys).find((k) => k.textContent?.toUpperCase() === e.key.toUpperCase());
         if (fnKey) {
             fnKey.classList.add("pressed");
+            if (!this.browserKeys.includes(e.key)) {
+                e.preventDefault();
+            }
+            return;
         }
-        if (document.activeElement === document.body ||
-            document.activeElement === this.inputField) {
+        if (!this.browserKeys.includes(e.key)) {
             e.preventDefault();
         }
         switch (e.key) {
             case "CapsLock":
+                if (this.capsLockKey)
+                    this.capsLockKey.classList.add("pressed");
                 this.isCapsOn = !this.isCapsOn;
                 this.capsIndicator.classList.toggle("on", this.isCapsOn);
                 break;
             case "NumLock":
+                if (this.numLockKey)
+                    this.numLockKey.classList.add("pressed");
                 this.isNumLockOn = !this.isNumLockOn;
                 this.numIndicator.classList.toggle("on", this.isNumLockOn);
                 break;
             case "ScrollLock":
+                if (this.scrollLockKey)
+                    this.scrollLockKey.classList.add("pressed");
                 this.isScrollOn = !this.isScrollOn;
                 this.scrollIndicator.classList.toggle("on", this.isScrollOn);
                 break;
+            case "Shift":
+                if (e.code === "ShiftLeft") {
+                    if (this.shiftLeftKey)
+                        this.shiftLeftKey.classList.add("pressed");
+                }
+                else if (e.code === "ShiftRight") {
+                    if (this.shiftRightKey)
+                        this.shiftRightKey.classList.add("pressed");
+                }
+                break;
             case "Meta":
+                if (e.code === "MetaLeft") {
+                    if (this.winLeftKey)
+                        this.winLeftKey.classList.add("pressed");
+                }
+                else if (e.code === "MetaRight") {
+                    if (this.winRightKey)
+                        this.winRightKey.classList.add("pressed");
+                }
                 this.isWinOn = !this.isWinOn;
                 this.winIndicator.classList.toggle("on", this.isWinOn);
                 break;
+            case "Control":
+                if (e.code === "ControlLeft") {
+                    if (this.ctrlLeftKey)
+                        this.ctrlLeftKey.classList.add("pressed");
+                }
+                else if (e.code === "ControlRight") {
+                    if (this.ctrlRightKey)
+                        this.ctrlRightKey.classList.add("pressed");
+                }
+                break;
+            case "Alt":
+                if (e.code === "AltLeft") {
+                    if (this.altLeftKey)
+                        this.altLeftKey.classList.add("pressed");
+                }
+                else if (e.code === "AltRight") {
+                    if (this.altRightKey)
+                        this.altRightKey.classList.add("pressed");
+                }
+                break;
+            case "Backspace":
+                this.updateInputField("delete");
+                if (this.backspaceKey)
+                    this.backspaceKey.classList.add("pressed");
+                break;
+            case "Enter":
+                this.updateInputField("add", "\n");
+                if (this.enterKey)
+                    this.enterKey.classList.add("pressed");
+                break;
+            case "Tab":
+                this.updateInputField("add", "   ");
+                if (this.tabKey)
+                    this.tabKey.classList.add("pressed");
+                break;
+            case " ":
+                this.updateInputField("add", " ");
+                if (this.spaceKey)
+                    this.spaceKey.classList.add("pressed");
+                break;
+            default:
+                const keyElement = Array.from(this.symbolKeys).find((k) => k.textContent.toLowerCase() === e.key.toLowerCase());
+                if (keyElement) {
+                    keyElement.classList.add("pressed");
+                    let char = keyElement.textContent;
+                    if ((this.isCapsOn && !e.shiftKey) || (!this.isCapsOn && e.shiftKey))
+                        char = char.toUpperCase();
+                    else
+                        char = char.toLowerCase();
+                    this.updateInputField("add", char);
+                }
         }
     }
     handleKeyUp(e) {
@@ -166,7 +251,7 @@ class Keyboard {
                     keyElement = this.altRightKey;
                 }
                 break;
-            case "Space":
+            case " ":
                 keyElement = this.spaceKey;
                 break;
             case "Tab":
@@ -203,8 +288,10 @@ class Keyboard {
                 }
                 break;
         }
-        if (keyElement)
+        if (keyElement) {
             keyElement.classList.remove("pressed");
+            console.log(`the button${keyElement.innerText} was unpressed`);
+        }
     }
     handleMouseDown(e, key) {
         key.classList.add("pressed");
@@ -224,7 +311,8 @@ class Keyboard {
             this.isNumLockOn = !this.isNumLockOn;
             this.numIndicator.classList.toggle("on", this.isNumLockOn);
         }
-        else if (parent.classList.contains("key--win")) {
+        else if (parent.classList.contains("key--win-left") ||
+            parent.classList.contains("key--win-right")) {
             this.isWinOn = !this.isWinOn;
             this.winIndicator.classList.toggle("on", this.isWinOn);
         }
