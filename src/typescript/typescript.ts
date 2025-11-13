@@ -1,20 +1,11 @@
 const $div = (selector: string) =>
   document.querySelector<HTMLDivElement>(selector)!;
 const $divs = (selector: string) =>
-  document.querySelectorAll<HTMLDivElement>(selector);
+  document.querySelectorAll<HTMLDivElement>(selector)!;
 const $input = (selector: string) =>
   document.querySelector<HTMLInputElement>(selector)!;
 const $form = (selector: string) =>
   document.querySelector<HTMLFormElement>(selector)!;
-const keyboard = $div("#keyboard");
-const inputSection = $div(".input");
-
-setTimeout(() => keyboard.classList.add("keyboard--show-effect"), 1000);
-setTimeout(() => inputSection.classList.add("input--show-effect"), 2000);
-
-const forbiddenWords: string[] = ["sex"];
-
-const fnKeys = $divs(".row__btn-groups .key__inner");
 
 class Keyboard {
   private fnKeys!: NodeListOf<HTMLDivElement>;
@@ -50,6 +41,7 @@ class Keyboard {
   private upArrow!: HTMLDivElement;
   private downArrow!: HTMLDivElement;
   private addForm!: HTMLFormElement;
+  private forbiddenWords!: string[];
 
   constructor() {
     this.initStates();
@@ -66,6 +58,7 @@ class Keyboard {
     this.isScrollOn = false;
   }
   private initElements(): void {
+    this.forbiddenWords = ["sex"];
     this.fnKeys = $divs(".row__btn-groups .key__inner");
     this.symbolKeys = $divs(".key__inner");
     this.inputField = $input("#entering");
@@ -89,13 +82,10 @@ class Keyboard {
     this.upArrow = $div("#arrow-up .key__inner");
     this.downArrow = $div("#arrow-down .key__inner");
     this.addForm = $form(".input__form");
-    this.ledIndicators = $divs(
-      ".nav-blocks__indecator .nav-blocks__indecator-led"
-    );
-    this.capsIndicator = this.ledIndicators[0];
-    this.numIndicator = this.ledIndicators[1];
-    this.scrollIndicator = this.ledIndicators[2];
-    this.winIndicator = this.ledIndicators[3];
+    this.capsIndicator = $div("#caps-led");
+    this.numIndicator = $div("#num-led");
+    this.scrollIndicator = $div("#scroll-led");
+    this.winIndicator = $div("#win-led");
   }
 
   private addMouseListeners(): void {
@@ -296,7 +286,7 @@ class Keyboard {
   }
   private checkForbiddenWords(text: string): string | undefined {
     const lowerText = text.toLowerCase();
-    return forbiddenWords.find(
+    return this.forbiddenWords.find(
       (word) => text.includes(word) || text.includes(word.toUpperCase())
     );
   }
@@ -310,5 +300,10 @@ class Keyboard {
   };
 }
 document.addEventListener("DOMContentLoaded", () => {
+  const keyboard = $div("#keyboard");
+  const inputSection = $div(".input");
+
+  setTimeout(() => keyboard.classList.add("keyboard--show-effect"), 1000);
+  setTimeout(() => inputSection.classList.add("input--show-effect"), 2000);
   const keyboardApp = new Keyboard();
 });

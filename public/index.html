@@ -14,7 +14,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <script src="scripts/script.js" defer></script>
+    <script type="module" src="scripts/typescript.js" defer></script>
   </head>
   <body>
     <main>
@@ -42,20 +42,20 @@
             </div>
             <div class="top-panel__nav-blocks">
               <div class="nav-blocks__led-indecators">
-                <div class="nav-blocks__indecator">
+                <div class="nav-blocks__indecator" id="caps-led">
                   <div class="nav-blocks__indecator-led"></div>
                   <span class="nav-blocks__indecator-text">CAPS LOCK</span>
                 </div>
-                <div class="nav-blocks__indecator">
+                <div class="nav-blocks__indecator" id="num-led">
                   <div class="nav-blocks__indecator-led"></div>
                   <span class="nav-blocks__indecator-text">NUM LOCK</span>
                 </div>
                 <div class="nav-blocks__indecator">
-                  <div class="nav-blocks__indecator-led"></div>
+                  <div class="nav-blocks__indecator-led" id="scroll-led"></div>
                   <span class="nav-blocks__indecator-text">SCROLL LOCK</span>
                 </div>
                 <div class="nav-blocks__indecator">
-                  <div class="nav-blocks__indecator-led"></div>
+                  <div class="nav-blocks__indecator-led" id="win-led"></div>
                   <span class="nav-blocks__indecator-text">WIN LOCK</span>
                 </div>
               </div>
