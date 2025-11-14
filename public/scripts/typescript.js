@@ -3,7 +3,6 @@ const $divs = (selector) => document.querySelectorAll(selector);
 const $input = (selector) => document.querySelector(selector);
 const $form = (selector) => document.querySelector(selector);
 class Keyboard {
-    fnKeys;
     isCapsOn;
     isNumLockOn;
     isWinOn;
@@ -12,7 +11,10 @@ class Keyboard {
     numIndicator;
     scrollIndicator;
     winIndicator;
+    fnKeys;
     symbolKeys;
+    keyboard;
+    inputSection;
     inputField;
     winLeftKey;
     winRightKey;
@@ -42,6 +44,7 @@ class Keyboard {
         this.addMouseListeners();
         this.addKeyboardListeners();
         this.SubmitForm();
+        this.setTimer();
     }
     initStates() {
         this.isCapsOn = false;
@@ -50,6 +53,8 @@ class Keyboard {
         this.isScrollOn = false;
     }
     initElements() {
+        this.keyboard = $div("#keyboard");
+        this.inputSection = $div(".input");
         this.forbiddenWords = ["sex"];
         this.browserKeys = ["F11"];
         this.fnKeys = $divs(".row__btn-groups .key__inner");
@@ -79,6 +84,10 @@ class Keyboard {
         this.numIndicator = $div("#num-led");
         this.scrollIndicator = $div("#scroll-led");
         this.winIndicator = $div("#win-led");
+    }
+    setTimer() {
+        setTimeout(() => this.keyboard.classList.add("keyboard--show-effect"), 1000);
+        setTimeout(() => this.inputSection.classList.add("input--show-effect"), 2000);
     }
     addMouseListeners() {
         this.symbolKeys.forEach((key) => {
@@ -362,7 +371,6 @@ class Keyboard {
         }
     }
     checkForbiddenWords(text) {
-        const lowerText = text.toLowerCase();
         return this.forbiddenWords.find((word) => text.includes(word) || text.includes(word.toUpperCase()));
     }
     handleForbiddenWords = (word) => {
@@ -375,10 +383,6 @@ class Keyboard {
     };
 }
 document.addEventListener("DOMContentLoaded", () => {
-    const keyboard = $div("#keyboard");
-    const inputSection = $div(".input");
-    setTimeout(() => keyboard.classList.add("keyboard--show-effect"), 1000);
-    setTimeout(() => inputSection.classList.add("input--show-effect"), 2000);
     const keyboardApp = new Keyboard();
 });
 export {};

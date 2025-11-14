@@ -1,14 +1,13 @@
-const $div = (selector: string) =>
+const $div = (selector: string): HTMLDivElement =>
   document.querySelector<HTMLDivElement>(selector)!;
-const $divs = (selector: string) =>
+const $divs = (selector: string): NodeListOf<HTMLDivElement> =>
   document.querySelectorAll<HTMLDivElement>(selector)!;
-const $input = (selector: string) =>
+const $input = (selector: string): HTMLInputElement =>
   document.querySelector<HTMLInputElement>(selector)!;
-const $form = (selector: string) =>
+const $form = (selector: string): HTMLFormElement =>
   document.querySelector<HTMLFormElement>(selector)!;
 
 class Keyboard {
-  private fnKeys!: NodeListOf<HTMLDivElement>;
   private isCapsOn!: boolean;
   private isNumLockOn!: boolean;
   private isWinOn!: boolean;
@@ -18,7 +17,10 @@ class Keyboard {
   private scrollIndicator!: HTMLDivElement;
   private winIndicator!: HTMLDivElement;
 
+  private fnKeys!: NodeListOf<HTMLDivElement>;
   private symbolKeys!: NodeListOf<HTMLDivElement>;
+  private keyboard!: HTMLDivElement;
+  private inputSection!: HTMLDivElement;
   private inputField!: HTMLInputElement;
   private winLeftKey!: HTMLDivElement;
   private winRightKey!: HTMLDivElement;
@@ -46,10 +48,10 @@ class Keyboard {
   constructor() {
     this.initStates();
     this.initElements();
-
     this.addMouseListeners();
     this.addKeyboardListeners();
     this.SubmitForm();
+    this.setTimer();
   }
   private initStates(): void {
     this.isCapsOn = false;
@@ -58,6 +60,8 @@ class Keyboard {
     this.isScrollOn = false;
   }
   private initElements(): void {
+    this.keyboard = $div("#keyboard");
+    this.inputSection = $div(".input");
     this.forbiddenWords = ["sex"];
     this.browserKeys = ["F11"];
     this.fnKeys = $divs(".row__btn-groups .key__inner");
@@ -90,6 +94,16 @@ class Keyboard {
     this.winIndicator = $div("#win-led");
   }
 
+  private setTimer(): void {
+    setTimeout(
+      () => this.keyboard.classList.add("keyboard--show-effect"),
+      1000
+    );
+    setTimeout(
+      () => this.inputSection.classList.add("input--show-effect"),
+      2000
+    );
+  }
   private addMouseListeners(): void {
     this.symbolKeys.forEach((key) => {
       key.addEventListener("mousedown", (e) => this.handleMouseDown(e, key));
@@ -120,9 +134,9 @@ class Keyboard {
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
-    const fnKey = Array.from(this.fnKeys).find(
+    const fnKey: HTMLElement = Array.from(this.fnKeys).find(
       (k) => k.textContent?.toUpperCase() === e.key.toUpperCase()
-    );
+    )!;
     if (fnKey) {
       fnKey.classList.add("pressed");
       if (!this.browserKeys.includes(e.key)) {
@@ -196,9 +210,9 @@ class Keyboard {
         if (this.spaceKey) this.spaceKey.classList.add("pressed");
         break;
       default:
-        const keyElement: HTMLDivElement | undefined = Array.from(
-          this.symbolKeys
-        ).find((k) => k.textContent.toLowerCase() === e.key.toLowerCase());
+        const keyElement: HTMLDivElement = Array.from(this.symbolKeys).find(
+          (k) => k.textContent.toLowerCase() === e.key.toLowerCase()
+        )!;
         if (keyElement) {
           keyElement.classList.add("pressed");
           let char = keyElement.textContent;
@@ -290,7 +304,7 @@ class Keyboard {
   private handleMouseDown(e: MouseEvent, key: HTMLElement): void {
     key.classList.add("pressed");
     const parent: HTMLElement = key.parentElement!;
-    const parentsParent = parent.parentElement!;
+    const parentsParent: HTMLElement = parent.parentElement!;
     if (
       parent.classList.contains("key--shift") ||
       parent.classList.contains("key--ctrl") ||
@@ -357,7 +371,6 @@ class Keyboard {
     }
   }
   private checkForbiddenWords(text: string): string | undefined {
-    const lowerText = text.toLowerCase();
     return this.forbiddenWords.find(
       (word) => text.includes(word) || text.includes(word.toUpperCase())
     );
@@ -372,10 +385,5 @@ class Keyboard {
   };
 }
 document.addEventListener("DOMContentLoaded", () => {
-  const keyboard = $div("#keyboard");
-  const inputSection = $div(".input");
-
-  setTimeout(() => keyboard.classList.add("keyboard--show-effect"), 1000);
-  setTimeout(() => inputSection.classList.add("input--show-effect"), 2000);
   const keyboardApp = new Keyboard();
 });
