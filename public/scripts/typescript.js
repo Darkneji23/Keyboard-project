@@ -2,6 +2,27 @@ const $div = (selector) => document.querySelector(selector);
 const $divs = (selector) => document.querySelectorAll(selector);
 const $input = (selector) => document.querySelector(selector);
 const $form = (selector) => document.querySelector(selector);
+class InputHelper {
+    inputField;
+    constructor(selector) {
+        this.inputField = $input(selector);
+    }
+    add(text) {
+        this.inputField.value += text;
+    }
+    delete() {
+        this.inputField.value = this.inputField.value.slice(0, -1);
+    }
+    replace(text, replaceText) {
+        this.inputField.value = this.inputField.value.replace(new RegExp(text, "gi"), replaceText);
+    }
+    get value() {
+        return this.inputField.value;
+    }
+    set value(value) {
+        this.inputField.value = value;
+    }
+}
 class Keyboard {
     isCapsOn;
     isNumLockOn;
@@ -39,6 +60,7 @@ class Keyboard {
     forbiddenWords;
     browserKeys;
     constructor() {
+        this.inputField = new InputHelper("#entering");
         this.initStates();
         this.initElements();
         this.addMouseListeners();
@@ -59,7 +81,6 @@ class Keyboard {
         this.browserKeys = ["F11"];
         this.fnKeys = $divs(".row__btn-groups .key__inner");
         this.symbolKeys = $divs(".key__inner");
-        this.inputField = $input("#entering");
         this.winLeftKey = $div(".key.key--win-left .key__inner");
         this.winRightKey = $div(".key.key--win-right .key__inner");
         this.shiftLeftKey = $div("#shift--left .key__inner");
@@ -190,22 +211,22 @@ class Keyboard {
                 }
                 break;
             case "Backspace":
-                this.updateInputField("delete");
+                this.inputField.delete();
                 if (this.backspaceKey)
                     this.backspaceKey.classList.add("pressed");
                 break;
             case "Enter":
-                this.updateInputField("add", "\n");
+                this.inputField.add("\n");
                 if (this.enterKey)
                     this.enterKey.classList.add("pressed");
                 break;
             case "Tab":
-                this.updateInputField("add", "   ");
+                this.inputField.add("   ");
                 if (this.tabKey)
                     this.tabKey.classList.add("pressed");
                 break;
             case " ":
-                this.updateInputField("add", " ");
+                this.inputField.add(" ");
                 if (this.spaceKey)
                     this.spaceKey.classList.add("pressed");
                 break;
@@ -218,7 +239,7 @@ class Keyboard {
                         char = char.toUpperCase();
                     else
                         char = char.toLowerCase();
-                    this.updateInputField("add", char);
+                    this.inputField.add(char);
                 }
         }
     }
@@ -330,16 +351,16 @@ class Keyboard {
             this.scrollIndicator.classList.toggle("on", this.isScrollOn);
         }
         else if (parent.classList.contains("key--backspace")) {
-            this.updateInputField("delete");
+            this.inputField.delete();
         }
         else if (parent.classList.contains("key--tab")) {
-            this.updateInputField("add", "   ");
+            this.inputField.add("   ");
         }
         else if (key.classList.contains("key__inner--enter")) {
-            this.updateInputField("add", "\n");
+            this.inputField.add("\n");
         }
         else if (key.querySelector(".key__inner__space")) {
-            this.updateInputField("add", " ");
+            this.inputField.add(" ");
         }
         else {
             let char = key.textContent;
@@ -347,7 +368,7 @@ class Keyboard {
                 char = char.toUpperCase();
             else
                 char = char.toLowerCase();
-            this.updateInputField("add", char);
+            this.inputField.add(char);
         }
     }
     releaseKey(key) {
@@ -357,19 +378,6 @@ class Keyboard {
             this.handleForbiddenWords(forbidden);
         }
     }
-    updateInputField(action, value = "", replaceValue = "") {
-        switch (action) {
-            case "add":
-                this.inputField.value += value;
-                break;
-            case "delete":
-                this.inputField.value = this.inputField.value.slice(0, -1);
-                break;
-            case "replace":
-                this.inputField.value = this.inputField.value.replace(new RegExp(value, "gi"), replaceValue);
-                break;
-        }
-    }
     checkForbiddenWords(text) {
         return this.forbiddenWords.find((word) => text.includes(word) || text.includes(word.toUpperCase()));
     }
@@ -377,13 +385,79 @@ class Keyboard {
         document.body.style.backgroundColor = "red";
         setTimeout(() => {
             alert("Иди нахуй, сука!");
-            this.updateInputField("replace", word);
+            this.inputField.replace(word, "");
             document.body.style.backgroundColor = "";
         }, 50);
     };
 }
+class User {
+    inputField;
+    password;
+    name;
+    age;
+    email;
+    online;
+    score;
+    constructor(name, age, email, password) {
+        this.inputField = new InputHelper("#entering");
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.online = false;
+        this.score = 0;
+    }
+    login() {
+        this.online = true;
+        this.inputField.add(`\n${this.name} has logged in and now online\n`);
+        return this;
+    }
+    logout() {
+        this.online = false;
+        this.inputField.add(`${this.name} has logged out and now offline\n`);
+        return this;
+    }
+    getHiddenPassword() {
+        return "*".repeat(this.password.length);
+    }
+    checkPassword(password) {
+        return this.password === password;
+    }
+    printInfo(showHiddenPassword = false) {
+        const passwordDisplay = showHiddenPassword ? this.password : "••••••••";
+        this.inputField.add(`User info:\n Name: ${this.name}\n Age: ${this.age}\n Password: ${passwordDisplay}\n Score: ${this.score}\n Email: ${this.email}\n\n`);
+        return this;
+    }
+    updateScore() {
+        this.score++;
+        this.inputField.add(`${this.name}'s score is now ${this.score}\n`);
+        return this;
+    }
+}
+class Admin extends User {
+    constructor(name, age, email, password) {
+        super(name, age, email, password);
+    }
+    deleteUser(user, users) {
+        const index = users.findIndex((u) => u.email === user.email);
+        if (index !== -1) {
+            users.splice(index, 1);
+            this.inputField.add(`${this.name} deleted user with email: ${user.email}\n`);
+        }
+        else {
+            this.inputField.add(`User with email ${user.email} not found\n`);
+        }
+        return this;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
     const keyboardApp = new Keyboard();
+    let userOne = new User("Dmytro", 32, "dg318842@gmail.com", "mypassword123");
+    let userTwo = new User("Vova", 36, "vova228@gmail.com", "qwerty456");
+    let users = [userOne, userTwo];
+    let admin = new Admin("Sasha", 28, "sashaprivate@gmail.com", "adminpass789");
+    admin.login().deleteUser(userTwo, users).logout();
+    console.log(users);
 });
 export {};
 //# sourceMappingURL=typescript.js.map
