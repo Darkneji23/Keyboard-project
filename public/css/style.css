@@ -236,7 +236,7 @@ body {
   margin: calc(100vh * 5 / 1080) calc(100vw * 1 / 1920);
 }
 .row--featured-height {
-  height: calc(100vw * 105 / 1920);
+  height: calc(100vh * 105 / 1080);
 }
 .row__btn-groups {
   display: flex;

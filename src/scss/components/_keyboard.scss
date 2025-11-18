@@ -109,7 +109,7 @@
   height: vh($row-height);
   margin: vh(5) vw(1);
   &--featured-height {
-    height: vw($featured-row-height);
+    height: vh($featured-row-height);
   }
   &__btn-groups {
     @include flex-row-between;
