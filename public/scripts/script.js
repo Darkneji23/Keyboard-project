@@ -6,22 +6,19 @@ const iLikeMeat = true;
 const myAge = 30;
 
 // Проверяем условия
-if (iLikeMeat && myAge >= 18 && myAge <= 30) {
+if (myAge < 18 || myAge > 30) {
+  document.body.style.backgroundColor = "#792222ff";
+  document.body.innerHTML += `Your age is not acceptable.<br>`;
+} 
+else if (iLikeMeat) {
   document.body.style.backgroundColor = "#3d7922ff";
   document.body.innerHTML += `You are ${myAge} years old and you like meat.<br>
 So you can work with us in our restaurant!<br>`;
-} else if (!iLikeMeat && myAge >= 18 && myAge <= 30) {
+} 
+else {
   document.body.style.backgroundColor = "#792222ff";
   document.body.innerHTML += `Your age is acceptable, but you don't like meat.<br>
-So it is going to be hard for you to work with us because we are a meat restaurant.<br>`;
-} else if ((iLikeMeat && myAge <= 18) || myAge >= 30) {
-  document.body.style.backgroundColor = "#792222ff";
-  document.body.innerHTML += `You like meat but your age is not acceptable <br>
-  Unfortunately because of the age you cannot work with us<br>`;
-} else {
-  document.body.style.backgroundColor = "#792222ff";
-  document.body.innerHTML += `Your age is not acceptable for us and you dont like meat.<br>
-  I am sorry but why the fick are you even here?<br>`;
+So it will be hard to work here.<br>`;
 }
 
 var amountOfDrinks = 0;
